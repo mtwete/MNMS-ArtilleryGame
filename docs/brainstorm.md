@@ -14,3 +14,5 @@ Brainstorm Features:
 12. Add health meter for tank to endure multiple hits
 13. Add sounds
 14. Replay button
+15. Add different kinds of shells/bullets for the tank to fire
+16. Add list of the highest scoring games that have been played (like arcade games have)
