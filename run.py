@@ -2,7 +2,10 @@ import pygame
 import sys
 from player import Player
 from missile import Missile
+from background import Background
 
+MENU_BACK = "docs/Menu-Background.jpg"
+LEVEL1_BACK = "docs/Hex-Background.jpg"
 
 pygame.init()
 display = pygame.display.set_mode((800, 600))
