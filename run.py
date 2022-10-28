@@ -1,46 +1,13 @@
 import pygame 
-import math
 import sys
-
+from player import Player
+from missile import Missile
 
 
 pygame.init()
 display = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 
-#player tank
-class Player:
-    def __init__(self, x, y, width, height):
-        #location
-        self.x = x
-        self.y = y
-        #size
-        self.width = width
-        self.height = height
-    #draw on screen
-    def main(self, display):
-        pygame.draw.rect(display, (255, 0, 0), (self.x, self.y, self.width, self.height))
-
-
-class missile:
-    def __init__(self, x, y, mouse_x, mouse_y):
-        #location
-        self.x = x
-        self.y = y
-        #mouse clicks
-        self.mouse_x = mouse_x
-        self.mouse_y = mouse_y
-        #speed of missile
-        self.speed = 7
-        #math that makes it work
-        self.angle = math.atan2(y-mouse_y, x-mouse_x)
-        self.x_vel = math.cos(self.angle) * self.speed
-        self.y_vel = math.sin(self.angle) * self.speed
-    #display on screen
-    def main(self, display):
-        self.x -= int(self.x_vel)
-        self.y -= int(self.y_vel)
-        pygame.draw.circle(display, (255, 255, 255), (self.x, self.y), 2)
 
 #tank instance
 player = Player(400, 300, 32, 32)
@@ -62,7 +29,7 @@ while True:
         #bullet clicks    
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                player_missile.append(missile(player.x, player.y, mouse_x, mouse_y))
+                player_missile.append(Missile(player.x, player.y, mouse_x, mouse_y))
 
     #tank movement
     keys = pygame.key.get_pressed()
