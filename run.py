@@ -22,7 +22,7 @@ class Player:
         pygame.draw.rect(display, (255, 0, 0), (self.x, self.y, self.width, self.height))
 
 
-class missile:
+class Missile:
     def __init__(self, x, y, mouse_x, mouse_y):
         #location
         self.x = x
@@ -42,10 +42,26 @@ class missile:
         self.y -= int(self.y_vel)
         pygame.draw.circle(display, (255, 255, 255), (self.x, self.y), 2)
 
+class Target:
+    def __init__(self, x, y, width, height):
+        self.targetImg = pygame.image.load('target.png')
+        self.targetImg = pygame.transform.scale(self.targetImg, (30, 30))
+        #location
+        self.x = x
+        self.y = y
+        #size
+        self.width = width
+        self.height = height
+    def main(self, display):
+        display.blit(self.targetImg, (self.x, self.y))
+
+
 #tank instance
 player = Player(400, 300, 32, 32)
 #append missiles
 player_missile = []
+
+shootingTarget = Target(400, 300, 20, 20)
 
 while True:
     #background
@@ -62,7 +78,7 @@ while True:
         #bullet clicks    
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                player_missile.append(missile(player.x, player.y, mouse_x, mouse_y))
+                player_missile.append(Missile(player.x, player.y, mouse_x, mouse_y))
 
     #tank movement
     keys = pygame.key.get_pressed()
@@ -87,6 +103,7 @@ while True:
 
     #display tank and bullets
     player.main(display)
+    shootingTarget.main(display)
     for bullet in player_missile:
         bullet.main(display)
 
