@@ -1,15 +1,18 @@
 import pygame 
 import math
 import sys
+import random
 
 
 
 pygame.init()
 display = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
+sprites = pygame.sprite.Group()
+
 
 #player tank
-class Player:
+class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         #location
         self.x = x
@@ -42,27 +45,36 @@ class Missile:
         self.y -= int(self.y_vel)
         pygame.draw.circle(display, (255, 255, 255), (self.x, self.y), 2)
 
-class Target:
-    def __init__(self, x, y, width, height):
-        self.targetImg = pygame.image.load('target.png')
-        self.targetImg = pygame.transform.scale(self.targetImg, (30, 30))
+class Target(pygame.sprite.Sprite):
+    def __init__(self, width, height):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((width, height))
+        self.image = pygame.image.load('target.png')
+        self.image = pygame.transform.scale(self.image, (30, 30))
+        self.rect = self.image.get_rect()
         #location
-        self.x = x
-        self.y = y
+        self.rect.x = random.randint(50, 750)
+        self.rect.y = random.randint(50, 550)
+        self.radius = 18
         #size
-        self.width = width
-        self.height = height
+        self.hitbox = (self.rect.x+15, self.rect.y+15)
     def main(self, display):
-        display.blit(self.targetImg, (self.x, self.y))
+        sprites.draw(display)
+        # pygame.draw.circle(display, (255, 255, 255), self.hitbox, self.radius, 2 )
 
+    def update(self):
+        if ((bullet.y <=  shootingTarget.hitbox[1] + shootingTarget.radius) and (bullet.y >= shootingTarget.hitbox[1] - shootingTarget.radius)
+                    and (bullet.x <= shootingTarget.hitbox[0] + shootingTarget.radius) and (bullet.x >= shootingTarget.hitbox[0] - shootingTarget.radius)):
+            # print("hit hit hit hit")
+            self.kill()
 
 #tank instance
 player = Player(400, 300, 32, 32)
-#append missiles
+#append missile
 player_missile = []
 
-shootingTarget = Target(400, 300, 20, 20)
-
+shootingTarget = Target(30, 30)
+sprites.add(shootingTarget)
 while True:
     #background
     display.fill((70,70,70))
@@ -106,6 +118,10 @@ while True:
     shootingTarget.main(display)
     for bullet in player_missile:
         bullet.main(display)
+        shootingTarget.update()
+        if len(sprites.sprites()) == 0:
+            shootingTarget = Target(30, 30)
+            sprites.add(shootingTarget)
 
     #60 fps
     clock.tick(60)
