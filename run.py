@@ -10,8 +10,6 @@ display = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 targetSprites = pygame.sprite.Group()
 
-
-
 #tank instance
 player = Player(400, 300, 32, 32)
 #append missile
