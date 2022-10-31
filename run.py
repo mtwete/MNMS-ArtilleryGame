@@ -2,18 +2,23 @@ import pygame
 import sys
 from player import Player
 from missile import Missile
+from target import Target
 
 
 pygame.init()
 display = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
+targetSprites = pygame.sprite.Group()
+
 
 
 #tank instance
 player = Player(400, 300, 32, 32)
-#append missiles
+#append missile
 player_missile = []
 
+shootingTarget = Target(30, 30)
+targetSprites.add(shootingTarget)
 while True:
     #background
     display.fill((70,70,70))
@@ -54,8 +59,13 @@ while True:
 
     #display tank and bullets
     player.main(display)
+    targetSprites.draw(display)
     for bullet in player_missile:
         bullet.main(display)
+        shootingTarget.update(shootingTarget, bullet)
+        if len(targetSprites.sprites()) == 0:
+            shootingTarget = Target(30, 30)
+            targetSprites.add(shootingTarget)
 
     #60 fps
     clock.tick(60)

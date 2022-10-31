@@ -1,7 +1,7 @@
 import pygame
 
 #player tank
-class Player:
+class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         #location
         self.x = x
