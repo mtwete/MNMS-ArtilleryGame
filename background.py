@@ -29,11 +29,18 @@ class Background(pygame.sprite.Sprite):
 
     #function to change the background image to the one for the next level
     def increment_level_background(self):
-        #increment the background level number to display the next level's background
+        #increment the background level number to the one for the next level's background
         self.level_background_num += 1
         #update the image to the new background
         self.image = pygame.image.load(self.background_file_list[self.level_background_num])
 
+
+    #function to change the background image back to the one for the main menu
+    def change_background_to_menu(self):
+        #change the background level number back to the main menu background index
+        self.level_background_num = 0
+        #update the image to display the main menu image
+        self.image = pygame.image.load(self.background_file_list[self.level_background_num])
 
 
 
