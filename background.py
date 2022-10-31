@@ -8,4 +8,5 @@ class Background:
     def __init__(self,background_file, loc=[0,0]):
         self.image = pygame.image.load(background_file)
         self.rect = self.image.get_rect()
+        self.loc = loc
         self.rect.left, self.rect.right = loc
