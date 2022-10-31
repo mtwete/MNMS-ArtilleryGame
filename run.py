@@ -32,6 +32,8 @@ while True:
     background = Background(BACKGROUND_IMAGES_FILE_PATHS)
     #display the background image underneath everything else
     display.blit(background.image,background.loc)
+    #Display the current score of the player
+    player.display_score(display)
 
     #get mouse click position
     mouse_x , mouse_y = pygame.mouse.get_pos()
