@@ -27,7 +27,8 @@ class Background(pygame.sprite.Sprite):
         self.rect.left, self.rect.right = loc
 
 
-    #function to change the background image to the one for the next level
+    #function to change the background image to the one for the next level,
+    #if it is at the last level then it will go back to the main menu background
     def increment_level_background(self):
         #Check if the level counter is already at the max level, if so
         #go back to the main menu index (i.e. 0)
