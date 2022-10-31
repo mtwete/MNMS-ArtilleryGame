@@ -3,8 +3,14 @@ import sys
 from player import Player
 from missile import Missile
 from target import Target
+from background import Background
 
+#static variable holding the list of background image file paths
+#with the first being the main menu image and the rest being the images for the
+#levels in ascending order.
+BACKGROUND_IMAGES_FILE_PATHS = ['docs/Menu-Background-Resized.jpg','docs/Hex-Background-Resized.jpg']
 
+#initialize pygame, display, clock and target sprites
 pygame.init()
 display = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
@@ -17,15 +23,20 @@ player = Player(400, 300, 32, 32)
 #append missile
 player_missile = []
 
+#Add a target sprite
 shootingTarget = Target(30, 30)
 targetSprites.add(shootingTarget)
 while True:
     #background
-    display.fill((70,70,70))
+    #set up background object
+    background = Background(BACKGROUND_IMAGES_FILE_PATHS)
+    #display the background image underneath everything else
+    display.blit(background.image,background.loc)
 
     #get mouse click position
     mouse_x , mouse_y = pygame.mouse.get_pos()
 
+    #check for events in game
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
