@@ -4,8 +4,9 @@ import pygame
 #<a href="https://www.freepik.com/free-vector/futuristic-technological-wallpaper_10987662.htm#query=gaming%20background&position=6&from_view=keyword">Image by coolvector</a> on Freepik
 
 
-class Background:
+class Background(pygame.sprite.Sprite):
     def __init__(self,background_file, loc=[0,0]):
+        pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(background_file)
         self.rect = self.image.get_rect()
         self.loc = loc
