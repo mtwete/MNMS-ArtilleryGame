@@ -19,31 +19,18 @@ class TargetAttr(Enum):
 
 
 class Target(pygame.sprite.Sprite):
-    """
-    def __init__(self, width, height):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((width, height))
-        self.image = pygame.image.load('target.png')
-        self.image = pygame.transform.scale(self.image, (30, 30))
-        self.rect = self.image.get_rect()
-        #location
-        self.rect.x = random.randint(50, 750)
-        self.rect.y = random.randint(50, 550)
-        self.radius = 18
-        #size
-        self.hitbox = (self.rect.x+15, self.rect.y+15)
-    """
+    
     def __init__(self, target_attr: TargetAttr):
         super().__init__()
         image = pygame.image.load('target.png')
         self.image = pygame.transform.scale(image, (target_attr.width, target_attr.height))
         self.rect = self.image.get_rect()
         #location
-        self.rect.x = random.randint(50, 750)
-        self.rect.y = random.randint(50, 550)
-        self.radius = 18
+        self.rect.x = random.randint(0, DISPLAY_SIZE[0] - target_attr.width)
+        self.rect.y = random.randint(0, DISPLAY_SIZE[1] - target_attr.height)
+        self.radius = target_attr.width//2 - 2
         #size
-        self.hitbox = (self.rect.x+15, self.rect.y+15)
+        self.hitbox = (self.rect.x + target_attr.width//2, self.rect.y + target_attr.height//2)
 
     def update(self, shootingTarget, bullet):
         if ((bullet.y <=  shootingTarget.hitbox[1] + shootingTarget.radius) and (bullet.y >= shootingTarget.hitbox[1] - shootingTarget.radius)
