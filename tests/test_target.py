@@ -13,5 +13,10 @@ class TestTarget(unittest.TestCase):
         #assert that the (x, y) coordinates are not the same
         self.assertNotEqual((target1.rect.x, target1.rect.y), (target2.rect.x, target2.rect.y))
 
-if __name__ == '__main__':
-    unittest.main()
+
+    def test_random_creation(self):
+        points_list = set(())
+        for i in range(10):
+            points_list.add(Target().points)
+        self.assertGreater(len(points_list), 1)
+
