@@ -2,17 +2,18 @@ import pygame
 import sys
 from player import Player
 from missile import Missile
-from target import Target
+from target import Target, TargetAttr
 from background import Background
 
 #static variable holding the list of background image file paths
 #with the first being the main menu image and the rest being the images for the
 #levels in ascending order.
 BACKGROUND_IMAGES_FILE_PATHS = ['docs/Menu-Background-Resized.jpg','docs/Hex-Background-Resized.jpg']
+DISPLAY_SIZE = (800, 600)
 
 #initialize pygame, display, clock and target sprites
 pygame.init()
-display = pygame.display.set_mode((800, 600))
+display = pygame.display.set_mode(DISPLAY_SIZE)
 clock = pygame.time.Clock()
 targetSprites = pygame.sprite.Group()
 
@@ -24,7 +25,8 @@ player = Player(400, 300, 32, 32)
 player_missile = []
 
 #Add a target sprite
-shootingTarget = Target(30, 30)
+#shootingTarget = Target(30, 30)
+shootingTarget = Target(TargetAttr.SMALL)
 targetSprites.add(shootingTarget)
 while True:
     #background
@@ -75,7 +77,8 @@ while True:
         bullet.main(display)
         shootingTarget.update(shootingTarget, bullet)
         if len(targetSprites.sprites()) == 0:
-            shootingTarget = Target(30, 30)
+            #shootingTarget = Target(30, 30)
+            shootingTarget = Target(TargetAttr.SMALL)
             targetSprites.add(shootingTarget)
 
     #60 fps
