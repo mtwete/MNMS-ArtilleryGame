@@ -68,11 +68,13 @@ while True:
     if player.y >= 566:
         player.y = 566 
 
-    #display tank and bullets
+    #display tank, bullets and targets
     player.main(display)
     targetSprites.draw(display)
     for bullet in player_missile:
         bullet.main(display)
+
+        #check if the target has been hit and regenerate a new on if true
         shootingTarget.update(shootingTarget, bullet)
         if len(targetSprites.sprites()) == 0:
             shootingTarget = Target(30, 30)
