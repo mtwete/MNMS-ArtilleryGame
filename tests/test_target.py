@@ -7,5 +7,10 @@ class TestTarget(unittest.TestCase):
         self.assertIsNotNone(target)
         self.assertGreater(target.points, 0)
 
+    def test_targets_are_random(self):
+        target1 = Target()
+        target2 = Target()
+        self.assertNotEqual(target1.points, target2.points)
+
 if __name__ == '__main__':
     unittest.main()

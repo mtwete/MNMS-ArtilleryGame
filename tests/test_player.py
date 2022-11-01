@@ -6,6 +6,12 @@ from player import Player
 
 #Test class for player class
 class TestPlayer(unittest.TestCase):
+
+    #test successful player creation
+    def test_player_init(self):
+        player = Player(400,300,32,32)
+        self.assertIsNotNone(player)
+
     #unit test for the display_score method
     def test_display_score(self):
         #Set up pygame, needed to call the display_score method
@@ -18,3 +24,9 @@ class TestPlayer(unittest.TestCase):
         player.display_score(display)
         #Make sure display.blit was called
         display.blit.assert_called()
+
+
+
+
+if __name__ == '__main__':
+    unittest.main()

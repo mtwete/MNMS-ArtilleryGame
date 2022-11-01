@@ -57,3 +57,6 @@ class TestBackground(unittest.TestCase):
         self.assertEqual('../docs/Menu-Background-Resized.jpg',
                          background.background_file_list[background.level_background_num])
 
+
+if __name__ == '__main__':
+    unittest.main()
