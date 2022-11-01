@@ -1,8 +1,8 @@
 import pygame
 import random
 from enum import Enum
+from constants import *
 
-DISPLAY_SIZE = (800, 600)
 
 class TargetAttr(Enum):
     X_SMALL = (20, 20, 9)
@@ -24,6 +24,7 @@ class Target(pygame.sprite.Sprite):
         super().__init__()
         image = pygame.image.load('target.png')
         target_attr = random.choice(list(TargetAttr))
+        self.points = target_attr.points
         self.image = pygame.transform.scale(image, (target_attr.width, target_attr.height))
         self.rect = self.image.get_rect()
         #location
@@ -33,8 +34,8 @@ class Target(pygame.sprite.Sprite):
         #size
         self.hitbox = (self.rect.x + target_attr.width//2, self.rect.y + target_attr.height//2)
 
-    def update(self, shootingTarget, bullet):
-        if ((bullet.y <=  shootingTarget.hitbox[1] + shootingTarget.radius) and (bullet.y >= shootingTarget.hitbox[1] - shootingTarget.radius)
-                    and (bullet.x <= shootingTarget.hitbox[0] + shootingTarget.radius) and (bullet.x >= shootingTarget.hitbox[0] - shootingTarget.radius)):
-            # print("hit hit hit hit")
+    def update(self, bullet):
+        if ((bullet.y <=  self.hitbox[1] + self.radius) and (bullet.y >= self.hitbox[1] - self.radius)
+                    and (bullet.x <= self.hitbox[0] + self.radius) and (bullet.x >= self.hitbox[0] - self.radius)):
             self.kill()
+            return self.points
