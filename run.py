@@ -24,9 +24,8 @@ player = Player(400, 300, 32, 32)
 #append missile
 player_missile = []
 
-#Add a target sprite
-#shootingTarget = Target(30, 30)
-shootingTarget = Target(TargetAttr.LARGE)
+#Add a target sprite with random size
+shootingTarget = Target()
 targetSprites.add(shootingTarget)
 while True:
     #background
@@ -79,8 +78,7 @@ while True:
         bullet.main(display)
         shootingTarget.update(shootingTarget, bullet)
         if len(targetSprites.sprites()) == 0:
-            #shootingTarget = Target(30, 30)
-            shootingTarget = Target(TargetAttr.LARGE)
+            shootingTarget = Target()
             targetSprites.add(shootingTarget)
 
     #60 fps
