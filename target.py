@@ -1,7 +1,5 @@
-import pygame
-import random
-from enum import Enum
 from constants import *
+from enum import Enum
 
 
 class TargetAttr(Enum):
@@ -22,7 +20,8 @@ class Target(pygame.sprite.Sprite):
     
     def __init__(self):
         super().__init__()
-        image = pygame.image.load('target.png')
+        image_file = os.path.join(IMAGES_DIR, "target.png")
+        image = pygame.image.load(image_file)
         target_attr = random.choice(list(TargetAttr))
         self.points = target_attr.points
         self.image = pygame.transform.scale(image, (target_attr.width, target_attr.height))
@@ -30,7 +29,7 @@ class Target(pygame.sprite.Sprite):
         #location
         self.rect.x = random.randint(0, DISPLAY_SIZE[0] - target_attr.width)
         self.rect.y = random.randint(0, DISPLAY_SIZE[1] - target_attr.height)
-        self.radius = target_attr.width//2
+        self.radius = target_attr.width//2 - 1
         #size
         self.hitbox = (self.rect.x + target_attr.width//2, self.rect.y + target_attr.height//2)
 

@@ -1,4 +1,4 @@
-import pygame
+from constants import *
 
 #player tank
 class Player(pygame.sprite.Sprite):

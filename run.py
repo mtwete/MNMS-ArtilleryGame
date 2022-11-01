@@ -1,10 +1,8 @@
-import pygame 
-import sys
+from constants import *
 from player import Player
 from missile import Missile
 from target import Target
 from background import Background
-from constants import *
 
 
 #initialize pygame, display, clock and target sprites
