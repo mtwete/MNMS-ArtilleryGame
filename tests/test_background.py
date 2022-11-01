@@ -55,6 +55,3 @@ class TestBackground(unittest.TestCase):
         self.assertEqual(MENU_BACKGROUND,
                          background.background_file_list[background.level_background_num])
 
-
-if __name__ == '__main__':
-    unittest.main()

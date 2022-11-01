@@ -8,5 +8,3 @@ class TestMissile(unittest.TestCase):
         missile = Missile(400,300,32,32)
         self.assertIsNotNone(missile)
 
-if __name__ == '__main__':
-    unittest.main()
