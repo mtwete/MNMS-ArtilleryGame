@@ -10,7 +10,8 @@ class TestTarget(unittest.TestCase):
     def test_targets_are_random(self):
         target1 = Target()
         target2 = Target()
-        self.assertNotEqual(target1.points, target2.points)
+        #assert that the (x, y) coordinates are not the same
+        self.assertNotEqual((target1.rect.x, target1.rect.y), (target2.rect.x, target2.rect.y))
 
 if __name__ == '__main__':
     unittest.main()
