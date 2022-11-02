@@ -64,7 +64,7 @@ while True:
     if player.y >= 566:
         player.y = 566 
 
-    #display tank and bullets
+    #display tank, bullets and targets
     player.main(display)
     targetSprites.draw(display)
     for bullet in player_missile:
