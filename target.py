@@ -31,7 +31,6 @@ class Target(pygame.sprite.Sprite):
         self.rect.y = random.randint(0, DISPLAY_SIZE[1] - target_attr.height)
 
     def update(self, bullet):
-        if ((self.rect.x <= bullet.x) and (bullet.x <= self.rect.x + self.rect.width) and
-            (self.rect.y <= bullet.y) and (bullet.y <= self.rect.y + self.rect.height)):
+        if (self.rect.collidepoint(bullet.x, bullet.y)):
             self.kill()
             return self.points
