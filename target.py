@@ -22,8 +22,9 @@ class Target(pygame.sprite.Sprite):
         super().__init__()
         image = pygame.image.load(TARGET_IMAGE)
         target_attr = random.choice(list(TargetAttr))
-        self.points = target_attr.points
         self.image = pygame.transform.scale(image, (target_attr.width, target_attr.height))
+        self.name = target_attr.name
+        self.points = target_attr.points
         self.rect = self.image.get_rect()
         #location
         self.rect.x = random.randint(0, DISPLAY_SIZE[0] - target_attr.width)
