@@ -1,4 +1,9 @@
+#ignore all python cached files
 __pycache__/
+
+#ignore all vscode settings
 .vscode/
+
+#ignore all data from coverage.py
 .coverage
 htmlcov/
