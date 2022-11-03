@@ -15,6 +15,7 @@ class Missile:
         self.angle = math.atan2(y-mouse_y, x-mouse_x)
         self.x_vel = math.cos(self.angle) * self.speed
         self.y_vel = math.sin(self.angle) * self.speed
+        
     #display on screen
     def main(self, display):
         self.x -= int(self.x_vel)
