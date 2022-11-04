@@ -31,6 +31,7 @@ class Player(pygame.sprite.Sprite):
         #Get the rectangle size of the text, so a background box of the right size can be drawn
         score_size = score_display.get_rect()
         score_box = pygame.Surface((score_size.w, score_size.h))
+        score_box.fill("black")
         #variable for the display location of the player score, it will be in the lower left corner
         #and offset upwards by the score text box height so it isn't off the screen
         score_location = (0, 600-score_size.height)
