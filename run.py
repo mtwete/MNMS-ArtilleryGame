@@ -3,7 +3,6 @@ from player import Player
 from missile import Missile
 from target import Target
 from background import Background
-#testing surya branch!!
 
 #initialize pygame, display, clock and target sprites
 pygame.init()

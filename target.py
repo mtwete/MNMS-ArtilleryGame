@@ -18,6 +18,9 @@ class TargetAttr(Enum):
 
 class Target(pygame.sprite.Sprite):
     
+    """
+    Target class for tank to shoot down.
+    """
     def __init__(self):
         super().__init__()
         image = pygame.image.load(TARGET_IMAGE)
