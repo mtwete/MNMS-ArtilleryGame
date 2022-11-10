@@ -25,7 +25,7 @@ menu = Menu()
 game_play = False
 while True:
     if not game_play:
-        display.blit(menu.image, (0, 0))
+        display.blit(menu.image, menu.rect)
 
         #check for events in game
         for event in pygame.event.get():
