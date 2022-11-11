@@ -4,7 +4,7 @@ class Timer():
 
     def __init__(self):
         # set the font and the starting ticks for calculating timer
-        self.font = pygame.freetype.SysFont(None, 34)
+        self.font = pygame.freetype.SysFont(None, 34) #34 font size
         self.font.origin=True
         self.start_ticks =  pygame.time.get_ticks() 
 
