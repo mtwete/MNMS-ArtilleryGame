@@ -3,6 +3,7 @@ from player import Player
 from missile import Missile
 from target import Target
 from background import Background
+from timer import Timer
 
 
 #initialize pygame, display, clock and target sprites
@@ -10,13 +11,14 @@ pygame.init()
 display = pygame.display.set_mode(DISPLAY_SIZE)
 clock = pygame.time.Clock()
 targetSprites = pygame.sprite.Group()
-pygame.time.set_timer(pygame.USEREVENT, 1000)
 
-#music
+
+#background music
 pygame.mixer.init()
-pygame.mixer.music.load("Disco_Heavy.mp3")
-pygame.mixer.music.set_volume(0.7)
-pygame.mixer.music.play()
+pygame.mixer.music.load(MUSIC_FILE_PATH)
+pygame.mixer.music.set_volume(MUSIC_VOLUME_PERCENTAGE)
+# the -1 argument repeats the song endlessly
+pygame.mixer.music.play(-1)
 
 
 #tank instance
@@ -28,9 +30,9 @@ player_missile = []
 shootingTarget = Target()
 targetSprites.add(shootingTarget)
 
-font=pygame.freetype.SysFont(None, 34)
-font.origin=True
-start_ticks=pygame.time.get_ticks() 
+#timer instance
+timer_countdown = Timer()
+
 while True:
 
     #background
@@ -54,8 +56,6 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 player_missile.append(Missile(player.x, player.y, mouse_x, mouse_y))
-
-
 
 
     #tank movement
@@ -91,14 +91,6 @@ while True:
             shootingTarget = Target()
             targetSprites.add(shootingTarget)
 
-
-    total_ticks = pygame.time.get_ticks()
-    seconds = TIMER_SECONDS - int((total_ticks - start_ticks) /1000)
-    if seconds < 0:
-        sys.exit()
-    out = '{seconds:02d}'.format(seconds=seconds)
-    font.render_to(display, (DISPLAY_SIZE[0] // 2.1, DISPLAY_SIZE[1] // 20), out, pygame.Color('White'))
-    pygame.display.flip()
-    clock.tick(60)
+    #update timer and display
+    timer_countdown.update_timer(clock, display)
     pygame.display.update()
-s
