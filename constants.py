@@ -4,8 +4,8 @@ import sys
 import random
 
 DISPLAY_SIZE = (800, 600)
-TIMER_SECONDS = 10
-TIMER_STRING = '10'
+TIMER_SECONDS = 100
+
 
 MAIN_DIR = os.path.dirname(__file__)
 IMAGES_DIR = os.path.join(MAIN_DIR, "resources/images")

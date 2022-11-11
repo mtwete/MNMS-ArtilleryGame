@@ -12,6 +12,12 @@ clock = pygame.time.Clock()
 targetSprites = pygame.sprite.Group()
 pygame.time.set_timer(pygame.USEREVENT, 1000)
 
+#music
+pygame.mixer.init()
+pygame.mixer.music.load("Disco_Heavy.mp3")
+pygame.mixer.music.set_volume(0.7)
+pygame.mixer.music.play()
+
 
 #tank instance
 player = Player(400, 300, 32, 32)
@@ -24,6 +30,7 @@ targetSprites.add(shootingTarget)
 
 font=pygame.freetype.SysFont(None, 34)
 font.origin=True
+start_ticks=pygame.time.get_ticks() 
 while True:
 
     #background
@@ -84,13 +91,14 @@ while True:
             shootingTarget = Target()
             targetSprites.add(shootingTarget)
 
-    #60 fps
-    ticks=pygame.time.get_ticks()
-    millis=ticks%1000
-    seconds=int(ticks/1000 % 60)
-    minutes=int(ticks/60000 % 24)
-    out='{minutes:02d}:{seconds:02d}:{millis}'.format(minutes=minutes, millis=millis, seconds=seconds)
-    font.render_to(display, (100, 100), out, pygame.Color('dodgerblue'))
+
+    total_ticks = pygame.time.get_ticks()
+    seconds = TIMER_SECONDS - int((total_ticks - start_ticks) /1000)
+    if seconds < 0:
+        sys.exit()
+    out = '{seconds:02d}'.format(seconds=seconds)
+    font.render_to(display, (DISPLAY_SIZE[0] // 2.1, DISPLAY_SIZE[1] // 20), out, pygame.Color('White'))
     pygame.display.flip()
     clock.tick(60)
     pygame.display.update()
+s
