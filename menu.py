@@ -10,8 +10,8 @@ class Button(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(centerx=center_x, centery=center_y)
         
         #draw button box and shadow
-        self.button = pygame.draw.rect(self.image, 'white', pygame.Rect(0, 0, 247, 55), border_radius=15)
         self.shadow = pygame.draw.rect(self.image, 'black', pygame.Rect(3, 5, 247, 55), border_radius=15)
+        self.button = pygame.draw.rect(self.image, 'white', pygame.Rect(0, 0, 247, 55), border_radius=15)
 
         #add text on button
         self.text = pygame.font.SysFont("arialblack", 30).render(self.value, True, 'black')
