@@ -19,8 +19,14 @@ class Button(pygame.sprite.Sprite):
         self.textpos = self.text.get_rect(centerx=self.button.width/2, centery=self.button.height/2)
         self.image.blit(self.text, self.textpos)
 
-    def click_engage(self):
-        self.button = self.shadow
+    def check_click(self):
+        if self.rect.collidepoint(pygame.mouse.get_pos()):
+            if pygame.mouse.get_pressed()[0] and not self.clicked:
+                self.clicked = True
+                print(self.value)
+                # return True
+        if not pygame.mouse.get_pressed()[0]:
+            self.clicked = False
 
 
 
@@ -41,10 +47,11 @@ class Menu(pygame.sprite.Sprite):
         self.image.blit(self.button1.image, self.button1.rect)
         self.image.blit(self.button2.image, self.button2.rect)
 
-        if self.button1.rect.collidepoint(pygame.mouse.get_pos()):
-            if pygame.mouse.get_pressed()[0] and not self.button1.clicked:
-                self.button1.clicked = True
-                print(self.button1.value)
-                # return True
-        if not pygame.mouse.get_pressed()[0]:
-            self.button1.clicked = False
+        self.button1.check_click()
+        # if self.button1.rect.collidepoint(pygame.mouse.get_pos()):
+        #     if pygame.mouse.get_pressed()[0] and not self.button1.clicked:
+        #         self.button1.clicked = True
+        #         print(self.button1.value)
+        #         # return True
+        # if not pygame.mouse.get_pressed()[0]:
+        #     self.button1.clicked = False
