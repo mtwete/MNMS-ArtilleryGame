@@ -38,20 +38,15 @@ class Menu(pygame.sprite.Sprite):
         self.image = pygame.Surface(DISPLAY_SIZE)
         self.image.fill('aquamarine3')
         self.rect = self.image.get_rect()
+        self.button_group = pygame.sprite.Group()
 
-        self.button1 = Button("Start Game", center_x = self.rect.width / 2, center_y = self.rect.height / 2)
-
-        self.button2 = Button("Leader Board", center_x = self.rect.width / 2, center_y = self.rect.height / 2 + 80)
+        self.start_button = Button("Start Game", center_x = self.rect.width / 2, center_y = self.rect.height / 2)
+        self.board_button = Button("Leader Board", center_x = self.rect.width / 2, center_y = self.rect.height / 2 + 80)
+        self.exit_button = Button("Exit Game", center_x = self.rect.width / 2, center_y = self.rect.height / 2 + 160)
+        self.button_group.add(self.start_button, self.board_button, self.exit_button)
+        self.button_group.draw(self.image)
         
     def draw(self):
-        self.image.blit(self.button1.image, self.button1.rect)
-        self.image.blit(self.button2.image, self.button2.rect)
-
-        self.button1.check_click()
-        # if self.button1.rect.collidepoint(pygame.mouse.get_pos()):
-        #     if pygame.mouse.get_pressed()[0] and not self.button1.clicked:
-        #         self.button1.clicked = True
-        #         print(self.button1.value)
-        #         # return True
-        # if not pygame.mouse.get_pressed()[0]:
-        #     self.button1.clicked = False
+        self.start_button.check_click()
+        self.board_button.check_click()
+        self.exit_button.check_click()
