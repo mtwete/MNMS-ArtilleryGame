@@ -4,6 +4,7 @@ class Button(pygame.sprite.Sprite):
     def __init__(self, button_text, center_x, center_y):
         super().__init__()
         self.value = button_text
+        self.clicked = False
 
         #create button surface
         self.image = pygame.Surface((250, 60), pygame.SRCALPHA)
@@ -41,5 +42,9 @@ class Menu(pygame.sprite.Sprite):
         self.image.blit(self.button2.image, self.button2.rect)
 
         if self.button1.rect.collidepoint(pygame.mouse.get_pos()):
-            if pygame.mouse.get_pressed()[0]:
-                return True
+            if pygame.mouse.get_pressed()[0] and not self.button1.clicked:
+                self.button1.clicked = True
+                print(self.button1.value)
+                # return True
+        if not pygame.mouse.get_pressed()[0]:
+            self.button1.clicked = False
