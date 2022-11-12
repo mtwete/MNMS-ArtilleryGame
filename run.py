@@ -22,6 +22,7 @@ shootingTarget = Target()
 targetSprites.add(shootingTarget)
 
 menu = Menu()
+menu.draw()
 game_play = False
 while True:
     if not game_play:
