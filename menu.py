@@ -28,10 +28,10 @@ class Button(pygame.sprite.Sprite):
             if pygame.mouse.get_pressed()[0] and not self.clicked:
                 self.clicked = True
                 return True
+            if not pygame.mouse.get_pressed()[0]:
+                self.clicked = False
         else:
             self.button_color = 'white'
-        if not pygame.mouse.get_pressed()[0]:
-            self.clicked = False
 
 
 
