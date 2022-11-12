@@ -24,7 +24,7 @@ class Button(pygame.sprite.Sprite):
             if pygame.mouse.get_pressed()[0] and not self.clicked:
                 self.clicked = True
                 print(self.value)
-                # return True
+                return True
         if not pygame.mouse.get_pressed()[0]:
             self.clicked = False
 
@@ -46,7 +46,11 @@ class Menu(pygame.sprite.Sprite):
         self.button_group.add(self.start_button, self.board_button, self.exit_button)
         self.button_group.draw(self.image)
         
-    def draw(self):
-        self.start_button.check_click()
-        self.board_button.check_click()
-        self.exit_button.check_click()
+    def check_start_button(self):
+        return self.start_button.check_click()
+
+    def check_exit_button(self):
+        return self.exit_button.check_click()
+        
+    def check_board_button(self):
+        return self.board_button.check_click()

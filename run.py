@@ -26,7 +26,7 @@ game_play = False
 while True:
     if not game_play:
         display.blit(menu.image, menu.rect)
-        menu.draw()
+        game_play = menu.check_start_button()
 
         #check for events in game
         for event in pygame.event.get():
