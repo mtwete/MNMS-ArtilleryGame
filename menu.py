@@ -36,8 +36,6 @@ class Menu(pygame.sprite.Sprite):
 
     def __init__(self):
         super().__init__()
-        # self.image = pygame.Surface(DISPLAY_SIZE)
-        # self.image.fill('aquamarine3')
         self.image = Background(BACKGROUND_IMAGES_FILE_PATHS).image
         self.rect = self.image.get_rect()
         self.button_group = pygame.sprite.Group()
@@ -46,6 +44,38 @@ class Menu(pygame.sprite.Sprite):
         self.text = pygame.font.SysFont("arialblack", 50).render("Welcome Player", True, 'white')
         self.textpos = self.text.get_rect(centerx=self.rect.width/2, centery=self.rect.height/5)
         self.image.blit(self.text, self.textpos) 
+
+        self.description = '''
+        Game Objective:  Clear as many targets by shooting bullets from the tank
+        to blast away the enemy.  Hurry, time is running out!
+        '''
+        self.write_description()
+
+    def write_description(self):
+        font = pygame.font.SysFont("arial", 14)
+        current_line = ""
+        line_count = 1
+       
+        def render_line():
+            nonlocal line_count
+            nonlocal current_line
+            rendered = font.render(current_line, True, 'white')
+            position = rendered.get_rect(centerx=self.rect.width/2, centery=self.rect.height/3 + (17*line_count))
+            self.image.blit(rendered, position)
+            current_line = ""
+            line_count += 1 
+
+        all_words = []
+        all_lines = self.description.splitlines()
+        for line in all_lines:
+            all_words.extend(line.strip().replace('\n', ' ').split())
+
+        for text in all_words:
+            current_line += text + " "
+            if font.size(current_line)[0] > 300:
+                render_line()
+        render_line()
+        
 
     def draw(self):
         self.start_button = Button("Start Game", center_x=self.rect.width/2, center_y = self.rect.height/2 + 80)
