@@ -24,10 +24,12 @@ targetSprites.add(shootingTarget)
 menu = Menu()
 menu.draw()
 game_play = False
-while True:
+game_run = True
+while game_run:
     if not game_play:
         display.blit(menu.image, menu.rect)
         game_play = menu.check_start_button()
+        game_run = not menu.check_exit_button()
 
         #check for events in game
         for event in pygame.event.get():

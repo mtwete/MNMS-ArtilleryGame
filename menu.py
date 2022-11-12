@@ -48,9 +48,9 @@ class Menu(pygame.sprite.Sprite):
         self.image.blit(self.text, self.textpos) 
 
     def draw(self):
-        self.start_button = Button("Start Game", center_x = self.rect.width / 2, center_y = self.rect.height / 2 + 80)
-        self.board_button = Button("Leader Board", center_x = self.rect.width / 2, center_y = self.rect.height / 2 + 160)
-        self.exit_button = Button("Exit Game", center_x = self.rect.width / 2, center_y = self.rect.height / 2 + 240)
+        self.start_button = Button("Start Game", center_x=self.rect.width/2, center_y = self.rect.height/2 + 80)
+        self.board_button = Button("Leader Board", center_x=self.rect.width/2, center_y = self.rect.height/2 + 160)
+        self.exit_button = Button("Exit Game", center_x=self.rect.width/2, center_y = self.rect.height/2 + 240)
         self.button_group.add(self.start_button, self.board_button, self.exit_button)
         self.button_group.draw(self.image)
         
