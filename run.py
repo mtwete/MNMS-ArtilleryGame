@@ -22,12 +22,12 @@ shootingTarget = Target()
 targetSprites.add(shootingTarget)
 
 menu = Menu()
-menu.draw()
 game_play = False
 game_run = True
 while game_run:
     if not game_play:
         display.blit(menu.image, menu.rect)
+        menu.draw()
         game_play = menu.check_start_button()
         game_run = not menu.check_exit_button()
 
