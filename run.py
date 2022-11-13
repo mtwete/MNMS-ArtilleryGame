@@ -31,14 +31,13 @@ shootingTarget = Target()
 targetSprites.add(shootingTarget)
 
 #timer instance
-timer_countdown = Timer()
+# timer_countdown = Timer()
 
 menu = Menu()
 game_state = None
 game_run = True
 while game_run:
     if game_state == START_GAME:
-
         #background
         #set up background object
         background = Background(BACKGROUND_IMAGES_FILE_PATHS)
@@ -94,6 +93,9 @@ while game_run:
                 shootingTarget = Target()
                 targetSprites.add(shootingTarget)
 
+        #update timer and display
+        menu.timer_countdown.update_timer(clock, display)
+
     elif game_state == LEADER_BOARD:
         print("game state:", game_state)
         game_state = None
@@ -112,6 +114,4 @@ while game_run:
                 sys.exit()
                 pygame.QUIT
 
-    #update timer and display
-    timer_countdown.update_timer(clock, display)
     pygame.display.update()
