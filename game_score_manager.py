@@ -17,14 +17,19 @@ class GameScoreManager:
 
     # Generate the string with the top scores/players in sorted order
     def leaderboard_string(self):
+        #If list is empty return an empty string
         if len(self.scores) == 0:
             return ""
+
         leaderboard_str = ""
-        num_scores = len(self.gameScores.scores) - 1
-        for i, score in enumerate(self.gameScores.scores):
+        num_scores = len(self.scores) - 1
+        # Loop over scores and call to_string method, adding it to the leaderboard_str
+        # If it is the last score don't add a new line
+        for i, score in enumerate(self.scores):
             if i != num_scores:
                 leaderboard_str += score.to_string()+'\n'
             else:
                 leaderboard_str += score.to_string()
+        return leaderboard_str
 
 
