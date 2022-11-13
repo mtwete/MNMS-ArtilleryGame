@@ -13,6 +13,7 @@ class LongTextWriter(pygame.sprite.Sprite):
         self.line_width = width
         self.line = 0
         self.rendered_group = []
+        self.update()
 
     def update(self):
         self.render_long_text()
