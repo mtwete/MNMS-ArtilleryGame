@@ -8,7 +8,8 @@ class GameScoreManager:
     # Add a gameScore object to the manager
     def add_score(self, game_score):
         # add and sort
-        self.scores.append(game_score).sort()
+        self.scores.append(game_score)
+        self.scores.sort(reverse=True)
 
     # Generate the string with the top scores/players in sorted order
     def leaderboard_string(self):
