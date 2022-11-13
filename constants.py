@@ -4,6 +4,11 @@ import sys
 import random
 
 DISPLAY_SIZE = (800, 600)
+TIMER_SECONDS = 100
+
+MUSIC_VOLUME_PERCENTAGE = .30
+MUSIC_FILE_PATH = 'resources/Disco_Heavy.mp3'
+
 
 MAIN_DIR = os.path.dirname(__file__)
 IMAGES_DIR = os.path.join(MAIN_DIR, "resources/images")

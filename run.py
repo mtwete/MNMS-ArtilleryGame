@@ -3,6 +3,7 @@ from player import Player
 from missile import Missile
 from target import Target
 from background import Background
+from timer import Timer
 from menu import Menu
 
 #initialize pygame, display, clock and target sprites
@@ -10,6 +11,14 @@ pygame.init()
 display = pygame.display.set_mode(DISPLAY_SIZE)
 clock = pygame.time.Clock()
 targetSprites = pygame.sprite.Group()
+
+
+#background music
+pygame.mixer.init()
+pygame.mixer.music.load(MUSIC_FILE_PATH)
+pygame.mixer.music.set_volume(MUSIC_VOLUME_PERCENTAGE)
+# the -1 argument repeats the song endlessly
+pygame.mixer.music.play(-1)
 
 
 #tank instance
@@ -21,11 +30,15 @@ player_missile = []
 shootingTarget = Target()
 targetSprites.add(shootingTarget)
 
+#timer instance
+timer_countdown = Timer()
+
 menu = Menu()
 game_state = None
 game_run = True
 while game_run:
     if game_state == START_GAME:
+
         #background
         #set up background object
         background = Background(BACKGROUND_IMAGES_FILE_PATHS)
@@ -99,6 +112,6 @@ while game_run:
                 sys.exit()
                 pygame.QUIT
 
-    #60 fps
-    clock.tick(60)
+    #update timer and display
+    timer_countdown.update_timer(clock, display)
     pygame.display.update()
