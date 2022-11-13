@@ -2,7 +2,7 @@ from constants import *
 
 class LongTextWriter(pygame.sprite.Sprite):
 
-    def __init__(self, long_text, font='arial', size=14, color='white', width=300):
+    def __init__(self, long_text, font='courier', size=16, color='white', width=300):
         super().__init__()
         self.text = long_text
         self.font = pygame.font.SysFont(font, size)
