@@ -31,7 +31,10 @@ class Menu(pygame.sprite.Sprite):
         text_writer.rect.center = (self.rect.width/2, self.rect.height/2.5)
         self.image.blit(text_writer.image, text_writer.rect)
 
+        self.image_original = self.image.copy()
+
     def draw(self):
+        self.image.blit(self.image_original, self.rect)
         self.button_group.update()
         self.button_group.draw(self.image)
         

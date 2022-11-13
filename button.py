@@ -13,8 +13,14 @@ class Button(pygame.sprite.Sprite):
         
 
     def update(self):
+        self.image.fill(pygame.Color(0,0,0,0))
+        self.button_rect = pygame.Rect(0, 0, 247, 55)
+
+        if self.clicked:
+            self.button_rect.move_ip(3, 5)
+
         self.shadow = pygame.draw.rect(self.image, CLAIRVOYANT, pygame.Rect(3, 5, 247, 55), border_radius=15)
-        self.button = pygame.draw.rect(self.image, self.button_color, pygame.Rect(0, 0, 247, 55), border_radius=15)
+        self.button = pygame.draw.rect(self.image, self.button_color, self.button_rect, border_radius=15)
 
         #add text on button
         self.text = pygame.font.SysFont("arialblack", 30).render(self.value, True, 'black')
@@ -30,7 +36,8 @@ class Button(pygame.sprite.Sprite):
             else:
                 if self.clicked:
                     self.clicked = False
-                    return True
+                    #return True
+                    print(self.value, 'clicked')
         else:
             self.clicked = False
             self.button_color = 'white'
