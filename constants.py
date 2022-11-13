@@ -4,6 +4,11 @@ import sys
 import random
 
 DISPLAY_SIZE = (800, 600)
+TIMER_SECONDS = 100
+
+MUSIC_VOLUME_PERCENTAGE = .30
+MUSIC_FILE_PATH = 'resources/Disco_Heavy.mp3'
+
 
 MAIN_DIR = os.path.dirname(__file__)
 IMAGES_DIR = os.path.join(MAIN_DIR, "resources/images")
@@ -16,3 +21,5 @@ TARGET_IMAGE = os.path.join(IMAGES_DIR, "target.png")
 MENU_BACKGROUND = os.path.join(IMAGES_DIR, 'Menu-Background-Resized.jpg')
 HEX_BACKGROUND = os.path.join(IMAGES_DIR, 'Hex-Background-Resized.jpg')
 BACKGROUND_IMAGES_FILE_PATHS = [MENU_BACKGROUND, HEX_BACKGROUND]
+
+
