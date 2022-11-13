@@ -19,7 +19,7 @@ class Button(pygame.sprite.Sprite):
 
         #add text on button
         self.text = pygame.font.SysFont("arialblack", 30).render(self.value, True, 'black')
-        self.textpos = self.text.get_rect(centerx=self.button.width/2, centery=self.button.height/2)
+        self.textpos = self.text.get_rect(center=self.button.center)
         self.image.blit(self.text, self.textpos)
 
     def check_click(self):
