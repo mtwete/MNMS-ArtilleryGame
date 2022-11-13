@@ -24,11 +24,13 @@ class Button(pygame.sprite.Sprite):
     def check_click(self):
         if self.rect.collidepoint(pygame.mouse.get_pos()):
             self.button_color = 'gray'
-            if pygame.mouse.get_pressed()[0] and not self.clicked:
-                self.clicked = True
-                return True
-            if not pygame.mouse.get_pressed()[0]:
-                self.clicked = False
+            if pygame.mouse.get_pressed()[0]:
+                if not self.clicked:
+                    self.clicked = True
+            else:
+                if self.clicked:
+                    self.clicked = False
+                    return True
         else:
             self.button_color = 'white'
 
