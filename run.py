@@ -25,7 +25,7 @@ menu = Menu()
 game_state = None
 game_run = True
 while game_run:
-    if game_state == "Start Game":
+    if game_state == START_GAME:
         #background
         #set up background object
         background = Background(BACKGROUND_IMAGES_FILE_PATHS)
@@ -81,11 +81,11 @@ while game_run:
                 shootingTarget = Target()
                 targetSprites.add(shootingTarget)
 
-    elif game_state == "Leader Board":
+    elif game_state == LEADER_BOARD:
         print("game state:", game_state)
         game_state = None
 
-    elif game_state == "Exit Game":
+    elif game_state == EXIT_GAME:
         game_run = False
 
     else:

@@ -30,9 +30,9 @@ class Menu(pygame.sprite.Sprite):
 
         #create buttons and add to group for quick update and draw
         self.button_group = pygame.sprite.Group()
-        self.start_button = Button("Start Game", center_x=self.rect.width/2, center_y=self.rect.height/2 + 80)
-        self.board_button = Button("Leader Board", center_x=self.rect.width/2, center_y=self.rect.height/2 + 160)
-        self.exit_button = Button("Exit Game", center_x=self.rect.width/2, center_y=self.rect.height/2 + 240)
+        self.start_button = Button(START_GAME, center_x=self.rect.width/2, center_y=self.rect.height/2 + 80)
+        self.board_button = Button(LEADER_BOARD, center_x=self.rect.width/2, center_y=self.rect.height/2 + 160)
+        self.exit_button = Button(EXIT_GAME, center_x=self.rect.width/2, center_y=self.rect.height/2 + 240)
         self.button_group.add(self.start_button, self.board_button, self.exit_button)
 
     def draw(self):
