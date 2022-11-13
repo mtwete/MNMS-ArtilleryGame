@@ -32,5 +32,6 @@ class Button(pygame.sprite.Sprite):
                     self.clicked = False
                     return True
         else:
+            self.clicked = False
             self.button_color = 'white'
 
