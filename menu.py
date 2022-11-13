@@ -40,11 +40,6 @@ class Menu(pygame.sprite.Sprite):
         self.button_group.update()
         self.button_group.draw(self.image)
         
-    def check_start_button(self):
-        return self.start_button.check_click()
+    def check_button_click(self):
+        return self.start_button.check_click() or self.exit_button.check_click() or self.board_button.check_click()
 
-    def check_exit_button(self):
-        return self.exit_button.check_click()
-        
-    def check_board_button(self):
-        return self.board_button.check_click()

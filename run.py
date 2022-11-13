@@ -22,21 +22,10 @@ shootingTarget = Target()
 targetSprites.add(shootingTarget)
 
 menu = Menu()
-game_play = False
+game_state = None
 game_run = True
 while game_run:
-    if not game_play:
-        display.blit(menu.image, menu.rect)
-        menu.draw()
-        game_play = menu.check_start_button()
-        game_run = not menu.check_exit_button()
-
-        #check for events in game
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-                pygame.QUIT
-    else:
+    if game_state == "Start Game":
         #background
         #set up background object
         background = Background(BACKGROUND_IMAGES_FILE_PATHS)
@@ -91,6 +80,24 @@ while game_run:
             if len(targetSprites.sprites()) == 0:
                 shootingTarget = Target()
                 targetSprites.add(shootingTarget)
+
+    elif game_state == "Leader Board":
+        print("game state:", game_state)
+        game_state = None
+
+    elif game_state == "Exit Game":
+        game_run = False
+
+    else:
+        display.blit(menu.image, menu.rect)
+        menu.draw()
+        game_state = menu.check_button_click()
+
+        #check for events in game
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+                pygame.QUIT
 
     #60 fps
     clock.tick(60)

@@ -40,7 +40,7 @@ class Button(pygame.sprite.Sprite):
             else:
                 if self.clicked:
                     self.clicked = False
-                    return True
+                    return self.value
         else:
             self.clicked = False
             self.button_color = 'white'
