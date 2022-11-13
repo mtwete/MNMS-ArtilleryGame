@@ -1,5 +1,6 @@
 from constants import *
 from background import Background
+from long_text_writer import LongTextWriter
 
 class Button(pygame.sprite.Sprite):
     def __init__(self, button_text, center_x, center_y):
@@ -58,33 +59,10 @@ class Menu(pygame.sprite.Sprite):
         Game Objective:  Clear as many targets by shooting bullets from the tank
         to blast away the enemy.  Hurry, time is running out!
         '''
-        self.write_description()
-
-    def write_description(self):
-        font = pygame.font.SysFont("arial", 14)
-        current_line = ""
-        line_count = 1
-       
-        def render_line():
-            nonlocal line_count
-            nonlocal current_line
-            rendered = font.render(current_line, True, 'white')
-            position = rendered.get_rect(centerx=self.rect.width/2, centery=self.rect.height/3 + (17*line_count))
-            self.image.blit(rendered, position)
-            current_line = ""
-            line_count += 1 
-
-        all_words = []
-        all_lines = self.description.splitlines()
-        for line in all_lines:
-            all_words.extend(line.strip().replace('\n', ' ').split())
-
-        for text in all_words:
-            current_line += text + " "
-            if font.size(current_line)[0] > 300:
-                render_line()
-        render_line()
-        
+        text_writer = LongTextWriter(self.description)
+        text_writer.update()
+        text_writer.rect.center = (self.rect.width/2, self.rect.height/2.5)
+        self.image.blit(text_writer.image, text_writer.rect)
 
     def draw(self):
         self.button_group.update()
