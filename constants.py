@@ -6,7 +6,7 @@ import random
 DISPLAY_SIZE = (800, 600)
 TIMER_SECONDS = 100
 
-MUSIC_VOLUME_PERCENTAGE = .30
+MUSIC_VOLUME_PERCENTAGE = .00
 MUSIC_FILE_PATH = 'resources/Disco_Heavy.mp3'
 
 
@@ -22,4 +22,9 @@ MENU_BACKGROUND = os.path.join(IMAGES_DIR, 'Menu-Background-Resized.jpg')
 HEX_BACKGROUND = os.path.join(IMAGES_DIR, 'Hex-Background-Resized.jpg')
 BACKGROUND_IMAGES_FILE_PATHS = [MENU_BACKGROUND, HEX_BACKGROUND]
 
+RED_VIOLET = (202, 22, 142)
+CLAIRVOYANT = (100, 14, 110)
 
+START_GAME = "Start Game"
+LEADER_BOARD = "Leader Board"
+EXIT_GAME = "Exit Game"
