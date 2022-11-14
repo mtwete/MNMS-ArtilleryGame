@@ -1,4 +1,3 @@
-
 # Class to write a gameScoreManager object to a file
 class ScoreFileWriter:
     # output_file = file object to write the leaderboard score data to
@@ -9,8 +8,8 @@ class ScoreFileWriter:
 
     # Function to write the leaderboard score data from a GameScoreManager and store it in a file
     def write_scores(self):
-        # Loop over the scores in the GameScoreManager object
         num_scores = len(self.gameScores.scores)-1
+        # Loop over the scores in the GameScoreManager object and write each one on a separate line
         for i, score in enumerate(self.gameScores.scores):
             # Doing this check just so the last call to write doesn't add a newline to the end
             # of the file

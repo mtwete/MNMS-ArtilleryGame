@@ -16,13 +16,13 @@ class TestGameScore(unittest.TestCase):
         expected_string = "Andre" + "\t" + str(1132)
         self.assertEqual(expected_string, game_score.to_string())
 
-    # Make sure the equality operator works
+    # Make sure the equality operator works for scores
     def test_equality(self):
         game_score1 = GameScore(1132, "Andre")
         game_score2 = GameScore(1132, "Jess")
         self.assertTrue(game_score1 == game_score2)
 
-    # Make sure the < operator works
+    # Make sure the < operator works for scores
     def test_less_than(self):
         game_score1 = GameScore(1132, "Andre")
         game_score2 = GameScore(2132, "Jess")

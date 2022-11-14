@@ -2,7 +2,6 @@
 # GameScoreManager class, data structure class for adding GameScores to the leaderboard.
 # It will keep up the top 10 scores in sorted order.
 class GameScoreManager:
-
     def __init__(self):
         self.scores = []
 
@@ -17,7 +16,7 @@ class GameScoreManager:
 
     # Generate the string with the top scores/players in sorted order
     def leaderboard_string(self):
-        #If list is empty return an empty string
+        # If list is empty return an empty string
         if len(self.scores) == 0:
             return ""
 

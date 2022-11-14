@@ -50,15 +50,18 @@ class TestGameScoreManager(unittest.TestCase):
     def test_leaderboard_string_empty_list(self):
         game_score_manager = GameScoreManager()
         leaderboard_string = game_score_manager.leaderboard_string()
-        self.assertEqual(leaderboard_string,"")
+        # Make sure it returns an empty string
+        self.assertEqual(leaderboard_string, "")
 
     # Test leaderboard_string method when the list is not empty
     def test_leaderboard_string_nonempty_list(self):
         game_score_manager = GameScoreManager()
         correct_leaderboard_string = ""
         for i in range(10):
+            # Add scores to the game_score_manager
             score = GameScore(10-i, "Adam")
             game_score_manager.add_score((score))
+            # Generate the correct leaderboard_string
             if i != 9:
                 correct_leaderboard_string += score.to_string()+'\n'
             else:

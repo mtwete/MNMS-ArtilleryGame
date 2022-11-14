@@ -16,7 +16,7 @@ class TestScoreFileWriter(unittest.TestCase):
     def test_writing_empty_scores(self):
         game_scores = MagicMock()
         game_scores.scores = []
-
+        # Doing this to mock having a file object passed to the ScoreFileWriter
         with patch('game_score_writer.ScoreFileWriter.write_scores', mock_open()) as mocked_file:
             score_file_writer = ScoreFileWriter(mocked_file, game_scores)
             score_file_writer.write_scores()

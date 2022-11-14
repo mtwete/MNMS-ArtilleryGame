@@ -6,15 +6,15 @@ class GameScore:
         self.player_name = name
         self.score = score
 
+    # Simple to_string method
     def to_string(self):
         return self.player_name + "\t" + str(self.score)
 
     # Override comparison operators so that gamescores can be sorted by score
     # Less than operator
     def __lt__(self, other):
-        # p1 < p2 calls p1.__lt__(p2)
         return self.score < other.score
 
-    # Equality operator
+    # Equality operator, NOTE this is only for sorting scores, not overall object equality
     def __eq__(self, other):
         return self.score == other.score
