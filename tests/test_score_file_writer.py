@@ -1,21 +1,24 @@
 import unittest
-
 from game_score_writer import ScoreFileWriter
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, mock_open, patch
+
 
 class TestScoreFileWriter(unittest.TestCase):
     # Test the constructor
     def test_constructor(self):
-        test_file_path = '/docs/leaderboard_data.txt'
+        test_file = mock_open()
         game_scores = MagicMock()
-        score_file_writer = ScoreFileWriter(test_file_path, game_scores)
-        self.assertEqual(test_file_path, score_file_writer.scoreFile)
+        score_file_writer = ScoreFileWriter(test_file, game_scores)
+        self.assertEqual(test_file, score_file_writer.scoreFile)
         self.assertEqual(game_scores, score_file_writer.gameScores)
 
     # Test writing empty GameScoreManager
     def test_writing_empty_scores(self):
-        test_file_path = './test_files/test_empty_leaderboard_data.txt'
         game_scores = MagicMock()
         game_scores.scores = []
-        score_file_writer = ScoreFileWriter(test_file_path, game_scores)
 
+        with patch('game_score_writer.ScoreFileWriter.write_scores', mock_open()) as mocked_file:
+            score_file_writer = ScoreFileWriter(mocked_file, game_scores)
+            score_file_writer.write_scores()
+            # Make sure write is never called on the file since game_scores is empty
+            mocked_file().write.assert_not_called()
