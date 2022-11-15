@@ -12,7 +12,7 @@ class TestScoreFileWriter(unittest.TestCase):
         self.assertEqual(test_file, score_file_writer.scoreFile)
         self.assertEqual(game_scores, score_file_writer.gameScores)
 
-    # Test writing empty GameScoreManager
+    # Test writing empty GameScoreList
     def test_writing_empty_scores(self):
         game_scores = MagicMock()
         game_scores.scores = []
