@@ -37,12 +37,18 @@ menu = Menu()
 game_state = None
 game_run = True
 while game_run:
+    #background
+    #set up background object
+    background = Background(BACKGROUND_IMAGES_FILE_PATHS)
+    #display the background image underneath everything else
+    display.blit(background.image,background.loc)
+
     if game_state == START_GAME:
-        #background
-        #set up background object
-        background = Background(BACKGROUND_IMAGES_FILE_PATHS)
-        #display the background image underneath everything else
+
+        #change to the level background and blit it to screen
+        background.increment_level_background()
         display.blit(background.image,background.loc)
+        
         #Display the current score of the player
         player.display_score(display)
 
