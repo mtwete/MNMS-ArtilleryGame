@@ -96,13 +96,7 @@ while game_run:
             if points is not None:
                 player.update_score(points)
             if len(targetSprites.sprites()) == 0:
-                shootingTarget = Target()
-                targetSprites.add(shootingTarget)
-                if ((shootingTarget.rect.x > player.x - player.width and shootingTarget.rect.x < player.x + player.width) 
-                    or (shootingTarget.rect.y > player.x - player.height and shootingTarget.rect.y < player.x + player.height)):
-                    shootingTarget.kill()
-                    shootingTarget = Target()
-                    targetSprites.add(shootingTarget)
+                shootingTarget = shootingTarget.spawn_new_target(targetSprites, player)
 
         #update timer and display
         menu.timer_countdown.update_timer(clock, display)

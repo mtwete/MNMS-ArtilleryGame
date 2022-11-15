@@ -37,3 +37,13 @@ class Target(pygame.sprite.Sprite):
         if (self.rect.collidepoint(bullet.x, bullet.y)):
             self.kill()
             return self.points
+
+    def spawn_new_target(self, targetSprites, player):
+        self = Target()
+        targetSprites.add(self)
+        if ((self.rect.x > player.x - player.width and self.rect.x < player.x + player.width) 
+            or (self.rect.y > player.x - player.height and self.rect.y < player.x + player.height)):
+            self.kill()
+            self = Target()
+            targetSprites.add(self)
+        return self
