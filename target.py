@@ -30,8 +30,8 @@ class Target(pygame.sprite.Sprite):
         self.points = target_attr.points
         self.rect = self.image.get_rect()
         #location
-        self.rect.x = random.randint(0, DISPLAY_SIZE[0] - target_attr.width)
-        self.rect.y = random.randint(0, DISPLAY_SIZE[1] - target_attr.height)
+        self.rect.x = random.randint(0, DISPLAY_SIZE[0] - target_attr.width - 20) #-20 for edge buffer
+        self.rect.y = random.randint(0, DISPLAY_SIZE[1] - target_attr.height - 20) #-20 for edge buffer
 
     def update(self, bullet):
         if (self.rect.collidepoint(bullet.x, bullet.y)):

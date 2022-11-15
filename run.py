@@ -48,7 +48,7 @@ while game_run:
         #change to the level background and blit it to screen
         background.increment_level_background()
         display.blit(background.image,background.loc)
-        
+
         #Display the current score of the player
         player.display_score(display)
 
@@ -98,6 +98,11 @@ while game_run:
             if len(targetSprites.sprites()) == 0:
                 shootingTarget = Target()
                 targetSprites.add(shootingTarget)
+                if ((shootingTarget.rect.x > player.x - player.width and shootingTarget.rect.x < player.x + player.width) 
+                    or (shootingTarget.rect.y > player.x - player.height and shootingTarget.rect.y < player.x + player.height)):
+                    shootingTarget.kill()
+                    shootingTarget = Target()
+                    targetSprites.add(shootingTarget)
 
         #update timer and display
         menu.timer_countdown.update_timer(clock, display)
