@@ -1,16 +1,19 @@
 
-# GameScoreManager class, data structure class for adding GameScores to the leaderboard.
+# GameScoreList class, data structure class for adding GameScores to the leaderboard.
 # It will keep up the top 10 scores in sorted order.
-class GameScoreManager:
+class GameScoreList:
     def __init__(self):
         self.scores = []
 
-    # Add a gameScore object to the manager, if the list is 10 scores long before adding
+    # Add a gameScore object to the list, if the list is 10 scores long before adding
     # the new score, the lowest score will be removed after it is added
     def add_score(self, game_score):
-        # add and sort
         self.scores.append(game_score)
         self.scores.sort(reverse=True)
+        self.keep_top_10()
+
+    # Make sure the list is at most 10 scores long
+    def keep_top_10(self):
         if len(self.scores) > 10:
             self.scores.remove(self.scores[-1])
 

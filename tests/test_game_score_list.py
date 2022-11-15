@@ -1,19 +1,20 @@
 import unittest
-from game_score_manager import GameScoreManager
+from game_score_list import GameScoreList
 # Have to import this class because magicmock can't override operators
 from game_score import GameScore
 
-class TestGameScoreManager(unittest.TestCase):
+
+class TestGameScoreList(unittest.TestCase):
 
     # Test the constructor
     def test_constructor(self):
-        game_score_manager = GameScoreManager()
+        game_score_manager = GameScoreList()
         #make sure it is just an empty list
         self.assertEqual(len(game_score_manager.scores), 0)
 
     # Test adding a score
     def test_add_score(self):
-        game_score_manager = GameScoreManager()
+        game_score_manager = GameScoreList()
         score1 = GameScore(1,"Adam")
         game_score_manager.add_score((score1))
         #make sure the item was added
@@ -21,7 +22,7 @@ class TestGameScoreManager(unittest.TestCase):
 
     # Test adding multiple scores and the sort
     def test_add_score_sort(self):
-        game_score_manager = GameScoreManager()
+        game_score_manager = GameScoreList()
         score1 = GameScore(1,"Adam")
         game_score_manager.add_score((score1))
         score2 = GameScore(2,"Mary")
@@ -35,7 +36,7 @@ class TestGameScoreManager(unittest.TestCase):
 
     # Test that it only will keep the top 10 scores when
     def test_only_10_scores(self):
-        game_score_manager = GameScoreManager()
+        game_score_manager = GameScoreList()
         for i in range(10):
             score = GameScore(i+1, "Adam")
             game_score_manager.add_score((score))
@@ -48,14 +49,14 @@ class TestGameScoreManager(unittest.TestCase):
 
     # Test leaderboard_string method when the list is empty
     def test_leaderboard_string_empty_list(self):
-        game_score_manager = GameScoreManager()
+        game_score_manager = GameScoreList()
         leaderboard_string = game_score_manager.leaderboard_string()
         # Make sure it returns an empty string
         self.assertEqual(leaderboard_string, "")
 
     # Test leaderboard_string method when the list is not empty
     def test_leaderboard_string_nonempty_list(self):
-        game_score_manager = GameScoreManager()
+        game_score_manager = GameScoreList()
         correct_leaderboard_string = ""
         for i in range(10):
             # Add scores to the game_score_manager
