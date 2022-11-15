@@ -66,6 +66,7 @@ while game_run:
                 if event.button == 1:
                     player_missile.append(Missile(player.x, player.y, mouse_x, mouse_y))
 
+        #updates player movement
         player.update_player()
 
 
