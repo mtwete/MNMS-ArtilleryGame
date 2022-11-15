@@ -16,6 +16,29 @@ class Player(pygame.sprite.Sprite):
     def main(self, display):
         pygame.draw.rect(display, (255, 0, 0), (self.x, self.y, self.width, self.height))
 
+    def update_player(self):
+        
+        #tank movement
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_a]:
+            self.x -= 2
+        if keys[pygame.K_d]:
+            self.x += 2
+        if keys[pygame.K_w]:
+            self.y-= 2
+        if keys[pygame.K_s]:
+            self.y+= 2
+
+        #dont go off screen
+        if self.x <= 0:
+            self.x = 0
+        if self.x >= 766:
+            self.x = 766
+        if self.y <= 0:
+            self.y = 0
+        if self.y >= 566:
+            self.y = 566 
+
     def update_score(self, add_point=1):
         self.score += add_point
 

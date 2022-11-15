@@ -66,26 +66,8 @@ while game_run:
                 if event.button == 1:
                     player_missile.append(Missile(player.x, player.y, mouse_x, mouse_y))
 
-        #tank movement
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_a]:
-            player.x -= 2
-        if keys[pygame.K_d]:
-            player.x += 2
-        if keys[pygame.K_w]:
-            player.y-= 2
-        if keys[pygame.K_s]:
-            player.y+= 2
+        player.update_player()
 
-        #dont go off screen
-        if player.x <= 0:
-            player.x = 0
-        if player.x >= 766:
-            player.x = 766
-        if player.y <= 0:
-            player.y = 0
-        if player.y >= 566:
-            player.y = 566 
 
         #display tank, bullets and targets
         player.main(display)
