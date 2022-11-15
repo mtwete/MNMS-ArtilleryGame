@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
         pygame.draw.rect(display, (255, 0, 0), (self.x, self.y, self.width, self.height))
 
     def update_player(self):
-        
+
         #tank movement
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
