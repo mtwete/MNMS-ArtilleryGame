@@ -28,26 +28,22 @@ player_missile = []
 shootingTarget = Target()
 targetSprites.add(shootingTarget)
 
-#timer instance
+#set up background object and skip menu background
+game_background = Background(BACKGROUND_IMAGES_FILE_PATHS)
+game_background.increment_level_background()
+
 timer = Timer()
 
 menu = Menu()
 game_state = None
 game_run = True
-while game_run:
-    #background
-    #set up background object
-    background = Background(BACKGROUND_IMAGES_FILE_PATHS)
-    #display the background image underneath everything else
-    display.blit(background.image,background.loc)
 
+while game_run:
     if game_state == START_GAME:
         if not timer.is_running():
             timer.start_timer()
 
-        #change to the level background and blit it to screen
-        background.increment_level_background()
-        display.blit(background.image,background.loc)
+        display.blit(game_background.image,game_background.loc)
 
         #Display the current score of the player
         player.display_score(display)
