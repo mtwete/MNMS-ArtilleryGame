@@ -3,8 +3,8 @@ from player import Player
 from missile import Missile
 from target import Target
 from background import Background
-from timer import Timer
 from menu import Menu
+from timer import Timer
 
 #initialize pygame, display, clock and target sprites
 pygame.init()
@@ -17,37 +17,33 @@ targetSprites = pygame.sprite.Group()
 pygame.mixer.init()
 pygame.mixer.music.load(MUSIC_FILE_PATH)
 pygame.mixer.music.set_volume(MUSIC_VOLUME_PERCENTAGE)
-# the -1 argument repeats the song endlessly
-pygame.mixer.music.play(-1)
+pygame.mixer.music.play(-1) # -1 to repeat song endlessly
 
 
 #tank instance
 player = Player(400, 300, 32, 32)
-#append missile
 player_missile = []
 
 #Add a target sprite with random size
 shootingTarget = Target()
 targetSprites.add(shootingTarget)
 
-#timer instance
-# timer_countdown = Timer()
+#set up background object and skip menu background
+game_background = Background(BACKGROUND_IMAGES_FILE_PATHS)
+game_background.increment_level_background()
+
+timer = Timer()
 
 menu = Menu()
 game_state = None
 game_run = True
+
 while game_run:
-    #background
-    #set up background object
-    background = Background(BACKGROUND_IMAGES_FILE_PATHS)
-    #display the background image underneath everything else
-    display.blit(background.image,background.loc)
-
     if game_state == START_GAME:
+        if not timer.is_running():
+            timer.start_timer()
 
-        #change to the level background and blit it to screen
-        background.increment_level_background()
-        display.blit(background.image,background.loc)
+        display.blit(game_background.image,game_background.loc)
 
         #Display the current score of the player
         player.display_score(display)
@@ -81,8 +77,7 @@ while game_run:
             if len(targetSprites.sprites()) == 0:
                 shootingTarget = shootingTarget.spawn_new_target(targetSprites, player)
 
-        #update timer and display
-        menu.timer_countdown.update_timer(clock, display)
+        timer.update_timer(display)
 
     elif game_state == LEADER_BOARD:
         print("game state:", game_state)
@@ -102,4 +97,5 @@ while game_run:
                 sys.exit()
                 pygame.QUIT
 
+    clock.tick(60)
     pygame.display.update()
