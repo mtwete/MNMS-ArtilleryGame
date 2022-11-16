@@ -11,10 +11,11 @@ class Player(pygame.sprite.Sprite):
         self.height = height
         #scorekeep
         self.score = 0
+        self.rect = 0
 
     #draw on screen
     def main(self, display):
-        pygame.draw.rect(display, (255, 0, 0), (self.x, self.y, self.width, self.height))
+        self.rect = pygame.draw.rect(display, (255, 0, 0), (self.x, self.y, self.width, self.height))
 
     def update_player(self):
 
