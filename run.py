@@ -4,6 +4,7 @@ from missile import Missile
 from target import Target
 from background import Background
 from menu import Menu
+from timer import Timer
 
 #initialize pygame, display, clock and target sprites
 pygame.init()
@@ -29,7 +30,7 @@ shootingTarget = Target()
 targetSprites.add(shootingTarget)
 
 #timer instance
-# timer_countdown = Timer()
+timer = Timer()
 
 menu = Menu()
 game_state = None
@@ -42,6 +43,8 @@ while game_run:
     display.blit(background.image,background.loc)
 
     if game_state == START_GAME:
+        if not timer.running:
+            timer.start_timer()
 
         #change to the level background and blit it to screen
         background.increment_level_background()
@@ -79,6 +82,8 @@ while game_run:
             if len(targetSprites.sprites()) == 0:
                 shootingTarget = shootingTarget.spawn_new_target(targetSprites, player)
 
+        timer.update_timer(clock, display)
+
     elif game_state == LEADER_BOARD:
         print("game state:", game_state)
         game_state = None
@@ -97,4 +102,5 @@ while game_run:
                 sys.exit()
                 pygame.QUIT
 
+    # clock.tick(60)
     pygame.display.update()

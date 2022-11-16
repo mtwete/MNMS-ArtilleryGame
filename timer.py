@@ -6,7 +6,13 @@ class Timer():
         # set the font and the starting ticks for calculating timer
         self.font = pygame.freetype.SysFont(None, 34) #34 font size
         self.font.origin=True
-        self.start_ticks =  pygame.time.get_ticks() 
+        self.start_ticks =  0
+        self.running = False
+
+    def start_timer(self):
+        if not self.running:
+            self.start_ticks =  pygame.time.get_ticks() 
+            self.running = True
 
 
     def update_timer(self, clock, display):
@@ -16,6 +22,7 @@ class Timer():
 
         #when the timer ends, may want to change this to switch pages instead of quit
         if seconds < 0:
+            self.running = False
             sys.exit()
 
         #display the timer
