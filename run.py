@@ -3,7 +3,6 @@ from player import Player
 from missile import Missile
 from target import Target
 from background import Background
-from timer import Timer
 from menu import Menu
 
 #initialize pygame, display, clock and target sprites
@@ -17,8 +16,7 @@ targetSprites = pygame.sprite.Group()
 pygame.mixer.init()
 pygame.mixer.music.load(MUSIC_FILE_PATH)
 pygame.mixer.music.set_volume(MUSIC_VOLUME_PERCENTAGE)
-# the -1 argument repeats the song endlessly
-pygame.mixer.music.play(-1)
+pygame.mixer.music.play(-1) # -1 to repeat song endlessly
 
 
 #tank instance
@@ -80,9 +78,6 @@ while game_run:
                 player.update_score(points)
             if len(targetSprites.sprites()) == 0:
                 shootingTarget = shootingTarget.spawn_new_target(targetSprites, player)
-
-        #update timer and display
-        menu.timer_countdown.update_timer(clock, display)
 
     elif game_state == LEADER_BOARD:
         print("game state:", game_state)
