@@ -2,7 +2,6 @@ from constants import *
 from background import Background
 from long_text_writer import LongTextWriter
 from button import Button
-from timer import Timer
 
 class Menu(pygame.sprite.Sprite):
 
@@ -42,9 +41,5 @@ class Menu(pygame.sprite.Sprite):
         self.button_group.draw(self.image)
         
     def check_button_click(self):
-        if self.start_button.check_click() == self.start_button.value:
-            self.timer_countdown = Timer()
-            return self.start_button.value
-
-        return self.exit_button.check_click() or self.board_button.check_click()
+        return self.start_button.check_click() or self.exit_button.check_click() or self.board_button.check_click()
 
