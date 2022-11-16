@@ -22,7 +22,6 @@ pygame.mixer.music.play(-1) # -1 to repeat song endlessly
 
 #tank instance
 player = Player(400, 300, 32, 32)
-#append missile
 player_missile = []
 
 #Add a target sprite with random size
@@ -43,7 +42,7 @@ while game_run:
     display.blit(background.image,background.loc)
 
     if game_state == START_GAME:
-        if not timer.running:
+        if not timer.is_running():
             timer.start_timer()
 
         #change to the level background and blit it to screen
@@ -82,7 +81,7 @@ while game_run:
             if len(targetSprites.sprites()) == 0:
                 shootingTarget = shootingTarget.spawn_new_target(targetSprites, player)
 
-        timer.update_timer(clock, display)
+        timer.update_timer(display)
 
     elif game_state == LEADER_BOARD:
         print("game state:", game_state)
@@ -102,5 +101,5 @@ while game_run:
                 sys.exit()
                 pygame.QUIT
 
-    # clock.tick(60)
+    clock.tick(60)
     pygame.display.update()
