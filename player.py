@@ -14,7 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = 0
 
     #draw on screen
-    def main(self, display):
+    def display(self, display):
         self.rect = pygame.draw.rect(display, (255, 0, 0), (self.x, self.y, self.width, self.height))
 
     def update_player(self):

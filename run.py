@@ -67,11 +67,11 @@ while game_run:
 
 
         #display tank, bullets and targets
-        player.main(display)
+        player.display(display)
         targetSprites.draw(display)
-        for bullet in player_missile:
-            bullet.main(display)
-            points = shootingTarget.update(bullet, player)
+        for missile in player_missile:
+            missile.display(display)
+            points = shootingTarget.update(missile, player)
             if points is not None:
                 player.update_score(points)
             if len(targetSprites.sprites()) == 0:
