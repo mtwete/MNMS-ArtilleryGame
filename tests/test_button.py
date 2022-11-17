@@ -4,26 +4,25 @@ from unittest.mock import MagicMock
 from button import Button
 
 class TestButton(unittest.TestCase):
+    def setUp(self) -> None:
+        pygame.font.init()
+        self.test_button = Button("test", 250, 250)
+
     def test_button_constructor(self):
         with self.assertRaises(TypeError):
-            button = Button()
-        button = Button("test", 250, 250)
-        self.assertEqual(button.rect.center, (250, 250))
-        self.assertFalse(button.clicked)
-        self.assertEqual(button.value, "test")
+            Button()
+        self.assertEqual(self.test_button.value, "test")
+        self.assertEqual(self.test_button.rect.center, (250, 250))
+        self.assertFalse(self.test_button.clicked)
 
     def test_no_click_update_effect(self):
-        pygame.font.init()
-        button = Button("test", 250, 250)
-        button.update()
-        self.assertNotEqual(button.shadow, button.button)
+        self.test_button.update()
+        self.assertNotEqual(self.test_button.shadow, self.test_button.button)
 
     def test_click_update_effect(self):
-        pygame.font.init()
-        button = Button("test", 250, 250)
-        button.clicked = MagicMock(True)
-        button.update()
-        self.assertEqual(button.shadow, button.button)
+        self.test_button.clicked = MagicMock(True)
+        self.test_button.update()
+        self.assertEqual(self.test_button.shadow, self.test_button.button)
 
     def test_hover_effect(self):
-        button = Button("test", 250, 250)
+        pass
