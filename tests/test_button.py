@@ -1,6 +1,6 @@
-import unittest
 import pygame
-from unittest.mock import MagicMock, patch
+import unittest
+from unittest.mock import MagicMock
 from button import Button
 
 class TestButton(unittest.TestCase):
@@ -18,11 +18,13 @@ class TestButton(unittest.TestCase):
     def test_no_click_update_effect(self):
         self.test_button.update()
         self.assertNotEqual(self.test_button.shadow, self.test_button.button)
+        self.assertEqual(self.test_button.textpos.center, self.test_button.button.center)
 
     def test_click_update_effect(self):
         self.test_button.clicked = MagicMock(True)
         self.test_button.update()
         self.assertEqual(self.test_button.shadow, self.test_button.button)
+        self.assertEqual(self.test_button.textpos.center, self.test_button.button.center)
 
     def test_hover_on_off_effects(self):
         self.assertIs(self.test_button.button_color, "white")
