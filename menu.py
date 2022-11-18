@@ -22,6 +22,7 @@ class Menu(pygame.sprite.Sprite):
         blast away the enemy.  Hurry, time is running out!
         '''
         text_writer = LongTextWriter(self.description)
+        text_writer.update()
         text_writer.rect.center = (self.rect.width/2, self.rect.height/2.5)
         self.image.blit(text_writer.image, text_writer.rect)
 
