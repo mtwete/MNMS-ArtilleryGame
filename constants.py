@@ -9,7 +9,7 @@ TIMER_SECONDS = 100
 MUSIC_VOLUME_PERCENTAGE = .00
 MUSIC_FILE_PATH = 'resources/Disco_Heavy.mp3'
 LEADERBOARD_SCORE_FILE_PATH = 'resources/leaderboard_scores.txt'
-LEADERBOARD_TITLE = 'TOP SCORES:\n'
+LEADERBOARD_TITLE = 'TOP SCORES:'
 
 
 MAIN_DIR = os.path.dirname(__file__)
