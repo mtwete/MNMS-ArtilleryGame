@@ -33,5 +33,4 @@ class GameScoreList:
             else:
                 leaderboard_str += score.to_string()
         return leaderboard_str
-
-
+    

@@ -9,6 +9,7 @@ TIMER_SECONDS = 100
 MUSIC_VOLUME_PERCENTAGE = .00
 MUSIC_FILE_PATH = 'resources/Disco_Heavy.mp3'
 LEADERBOARD_SCORE_FILE_PATH = 'resources/leaderboard_scores.txt'
+LEADERBOARD_TITLE = 'TOP SCORES:\n'
 
 
 MAIN_DIR = os.path.dirname(__file__)
@@ -29,3 +30,5 @@ CLAIRVOYANT = (100, 14, 110)
 START_GAME = "Start Game"
 LEADER_BOARD = "Leader Board"
 EXIT_GAME = "Exit Game"
+RETURN_TO_MENU = "Return to Menu"
+ENTER = "ENTER"
