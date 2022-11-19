@@ -29,8 +29,7 @@ class GameScoreList:
         # If it is the last score don't add a new line
         for i, score in enumerate(self.scores):
             if i != num_scores:
-                leaderboard_str += score.to_string()+'\n'
+                leaderboard_str += str(i+1)+'. '+score.to_string()+'\n'
             else:
                 leaderboard_str += score.to_string()
         return leaderboard_str
-    
