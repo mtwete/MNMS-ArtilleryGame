@@ -12,11 +12,11 @@ class ScoreFileReader:
     def read_scores(self):
         # Get the lines
         lines = self.scoreFile.readlines()
-        game_score_manager = GameScoreList()
+        game_score_list = GameScoreList()
         # Loop over the lines, splitting the data to feed into a GameScore object, then add that object
         # to the game score manager
         for line in lines:
             fields = line.split()
-            game_score_manager.add_score(GameScore(int(fields[1]), fields[0]))
+            game_score_list.add_score(GameScore(int(fields[1]), fields[0]))
         self.scoreFile.close()
-        return game_score_manager
+        return game_score_list
