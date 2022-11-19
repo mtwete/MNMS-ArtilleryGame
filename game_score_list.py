@@ -31,5 +31,5 @@ class GameScoreList:
             if i != num_scores:
                 leaderboard_str += str(i+1)+'. '+score.to_string()+'\n'
             else:
-                leaderboard_str += score.to_string()
+                leaderboard_str += str(i+1)+'. '+score.to_string()
         return leaderboard_str
