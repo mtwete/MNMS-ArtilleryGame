@@ -30,5 +30,5 @@ CLAIRVOYANT = (100, 14, 110)
 START_GAME = "Start Game"
 LEADER_BOARD = "Leader Board"
 EXIT_GAME = "Exit Game"
-RETURN_TO_MENU = "Return to Menu"
+RETURN_TO_MENU = "Main Menu"
 ENTER = "ENTER"
