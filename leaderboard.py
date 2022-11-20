@@ -4,9 +4,6 @@ from leaderboard_line_writer import LeaderboardLineWriter
 from button import Button
 
 
-#FIGURE OUT MAX WIDTH FOR THIS TEXT AND FONT TO GIVE TO CLASS GETTING NAME?
-
-
 class Leaderboard(pygame.sprite.Sprite):
 
     def __init__(self, leaderboard_scores):
@@ -21,7 +18,6 @@ class Leaderboard(pygame.sprite.Sprite):
 
 
         self.score_line_writer = LeaderboardLineWriter(self.leaderboard_scores, self.rect.width,self.rect.height,self.text.get_rect().height)
-        #self.score_line_writer.rect.center = (self.rect.width/2,self.rect.height/2)
         self.image.blit(self.score_line_writer.image, self.score_line_writer.rect)
 
         self.image_original = self.image.copy()
@@ -33,11 +29,6 @@ class Leaderboard(pygame.sprite.Sprite):
 
 
     def draw(self):
-        #self.image.blit(self.text_writer.image, self.text_writer.rect)
-        #self.image.blit(self.imalfge_original, self.rect)
-        #self.button_group.update()
-        #self.button_group.draw(self.image)
-
         self.image.blit(self.image_original, self.rect)
         self.button_group.update()
         self.button_group.draw(self.image)
@@ -47,9 +38,3 @@ class Leaderboard(pygame.sprite.Sprite):
             return None
         return self.exit_button.check_click() or LEADER_BOARD
 
-
-        #click_result = self.return_button.check_click()
-        #if click_result is not None:
-        #    return click_result
-        #else:
-        #    return LEADER_BOARD
