@@ -89,6 +89,11 @@ while game_run:
         display.blit(leaderboard.image, leaderboard.rect)
         leaderboard.draw()
         game_state = leaderboard.check_button_click()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+                pygame.QUIT
+
 
     elif game_state == EXIT_GAME:
         game_run = False
