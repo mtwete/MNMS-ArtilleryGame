@@ -5,6 +5,8 @@ from target import Target
 from background import Background
 from menu import Menu
 from timer import Timer
+from score_file_reader import ScoreFileReader
+from leaderboard import Leaderboard
 
 #initialize pygame, display, clock and target sprites
 pygame.init()
@@ -33,10 +35,14 @@ game_background = Background(BACKGROUND_IMAGES_FILE_PATHS)
 game_background.increment_level_background()
 
 timer = Timer()
-
+leaderboard_score_file = open(LEADERBOARD_SCORE_FILE_PATH)
+score_file_reader = ScoreFileReader(leaderboard_score_file)
+game_score_list = score_file_reader.read_scores()
+leaderboard = Leaderboard(game_score_list.leaderboard_string())
 menu = Menu()
 game_state = None
 game_run = True
+
 
 while game_run:
     if game_state == START_GAME:
@@ -80,8 +86,9 @@ while game_run:
         timer.update_timer(display)
 
     elif game_state == LEADER_BOARD:
-        print("game state:", game_state)
-        game_state = None
+        display.blit(leaderboard.image, leaderboard.rect)
+        leaderboard.draw()
+        game_state = leaderboard.check_button_click()
 
     elif game_state == EXIT_GAME:
         game_run = False
