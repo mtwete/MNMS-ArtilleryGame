@@ -27,5 +27,10 @@ class TestLongTextWriter(unittest.TestCase):
         
     def test_writer_update(self):
         self.writer.render_long_text = MagicMock()
+        self.writer.image = MagicMock()
         self.writer.update()
         self.writer.render_long_text.assert_called_once()
+        
+    def test_render_text(self):
+        self.writer.update()
+        self.assertGreater(self.writer.line, 1)
