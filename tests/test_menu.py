@@ -5,9 +5,8 @@ from menu import Menu
 
 class TestMenu(unittest.TestCase):
     def setUp(self) -> None:
-        pygame.font.init()
-    #     pygame.display = MagicMock()
+        self.menu = Menu()
+        pass
 
-    # def test_menu_constructor(self):
-    #     menu = Menu()
-    #     self.assertEqual(len(menu.button_group), 3)
+    def test_menu_constructor(self):
+        self.assertEqual(len(self.menu.button_group), 3)

@@ -7,7 +7,7 @@ class Menu(pygame.sprite.Sprite):
 
     def __init__(self):
         super().__init__()
-        self.image = Background(BACKGROUND_IMAGES_FILE_PATHS).image.convert()
+        self.image = Background(BACKGROUND_IMAGES_FILE_PATHS).image
         self.rect = self.image.get_rect()
 
         #add welcome message to menu screen
