@@ -22,7 +22,7 @@ pygame.mixer.music.play(-1) # -1 to repeat song endlessly
 
 
 #tank instance
-player = Player(400, 300, 32, 32)
+player = Player(400, 300, 75, 75)
 player_missile = []
 
 #Add a target sprite with random size
@@ -63,7 +63,7 @@ while game_run:
             #bullet clicks    
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    player_missile.append(Missile(player.x, player.y, mouse_x, mouse_y))
+                    player_missile.append(Missile(player.rect.x, player.rect.y, mouse_x, mouse_y))
 
         #updates player movement
         player.update_player()

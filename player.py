@@ -4,7 +4,7 @@ from constants import *
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         super().__init__()
-        image = pygame.image.load(TARGET_IMAGE)
+        image = pygame.image.load(TANK_IMAGE)
         self.image = pygame.transform.scale(image, (width, height))
         #size
         self.width = width
@@ -14,8 +14,8 @@ class Player(pygame.sprite.Sprite):
         #display
         self.rect = self.image.get_rect()
         #location
-        self.rect.x = random.randint(0, DISPLAY_SIZE[0] - self.x - 20) #-20 for edge buffer
-        self.rect.y = random.randint(0, DISPLAY_SIZE[1] - self.y - 20) #-20 for edge buffer
+        self.rect.x = self.x
+        self.rect.y = self.y
         #scorekeep
         self.score = 0
 
@@ -24,23 +24,24 @@ class Player(pygame.sprite.Sprite):
         #tank movement
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
-            self.x -= 2
+            self.rect.x -= 2
+            self.image = pygame.transform.rotate(self.image, 90)
         if keys[pygame.K_d]:
-            self.x += 2
+            self.rect.x += 2
         if keys[pygame.K_w]:
-            self.y-= 2
+            self.rect.y-= 2
         if keys[pygame.K_s]:
-            self.y+= 2
+            self.rect.y+= 2
 
         #dont go off screen
-        if self.x <= 0:
-            self.x = 0
-        if self.x >= 766:
-            self.x = 766
-        if self.y <= 0:
-            self.y = 0
-        if self.y >= 566:
-            self.y = 566 
+        if self.rect.x <= 0:
+            self.rect.x = 0
+        if self.rect.x >= 766:
+            self.rect.x = 766
+        if self.rect.y <= 0:
+            self.rect.y = 0
+        if self.rect.y >= 566:
+            self.rect.y = 566 
 
     def update_score(self, add_point=1):
         self.score += add_point
