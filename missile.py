@@ -1,8 +1,8 @@
-import pygame
-import math
+from constants import *
 
-class Missile:
+class Missile(pygame.sprite.Sprite):
     def __init__(self, x, y, mouse_x, mouse_y):
+        super().__init__()
         #location
         self.x = x
         self.y = y
@@ -17,7 +17,7 @@ class Missile:
         self.y_vel = math.sin(self.angle) * self.speed
         
     #display on screen
-    def main(self, display):
+    def update(self, display):
         self.x -= int(self.x_vel)
         self.y -= int(self.y_vel)
         pygame.draw.circle(display, (255, 255, 255), (self.x, self.y), 2)
