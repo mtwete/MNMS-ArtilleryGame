@@ -11,6 +11,7 @@ pygame.init()
 display = pygame.display.set_mode(DISPLAY_SIZE)
 clock = pygame.time.Clock()
 targetSprites = pygame.sprite.Group()
+playerSprites = pygame.sprite.Group()
 
 
 #background music
@@ -27,6 +28,8 @@ player_missile = []
 #Add a target sprite with random size
 shootingTarget = Target()
 targetSprites.add(shootingTarget)
+
+playerSprites.add(player)
 
 #set up background object and skip menu background
 game_background = Background(BACKGROUND_IMAGES_FILE_PATHS)
@@ -67,7 +70,7 @@ while game_run:
 
 
         #display tank, bullets and targets
-        player.main(display)
+        playerSprites.draw(display)
         targetSprites.draw(display)
         for bullet in player_missile:
             bullet.main(display)

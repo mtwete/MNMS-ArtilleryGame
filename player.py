@@ -3,18 +3,21 @@ from constants import *
 #player tank
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
-        #location
-        self.x = x
-        self.y = y
+        super().__init__()
+        image = pygame.image.load(TARGET_IMAGE)
+        self.image = pygame.transform.scale(image, (width, height))
         #size
         self.width = width
         self.height = height
+        self.x = x
+        self.y = y
+        #display
+        self.rect = self.image.get_rect()
+        #location
+        self.rect.x = random.randint(0, DISPLAY_SIZE[0] - self.x - 20) #-20 for edge buffer
+        self.rect.y = random.randint(0, DISPLAY_SIZE[1] - self.y - 20) #-20 for edge buffer
         #scorekeep
         self.score = 0
-
-    #draw on screen
-    def main(self, display):
-        pygame.draw.rect(display, (255, 0, 0), (self.x, self.y, self.width, self.height))
 
     def update_player(self):
 

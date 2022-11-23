@@ -12,8 +12,10 @@ MUSIC_FILE_PATH = 'resources/Disco_Heavy.mp3'
 
 MAIN_DIR = os.path.dirname(__file__)
 IMAGES_DIR = os.path.join(MAIN_DIR, "resources/images")
+TANKS_DIR = os.path.join(MAIN_DIR, "resources/images/tanks")
 
 TARGET_IMAGE = os.path.join(IMAGES_DIR, "target.png")
+TANK_IMAGE = os.path.join(TANKS_DIR, "tile007.png")
 
 #static variable holding the list of background image file paths
 #with the first being the main menu image and the rest being the images for the
