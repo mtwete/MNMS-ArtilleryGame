@@ -4,8 +4,8 @@ from constants import *
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         super().__init__()
-        image = pygame.image.load(TANK_IMAGE)
-        self.image = pygame.transform.scale(image, (width, height))
+        # image = pygame.image.load(TANK_UP)
+        self.image = pygame.transform.scale(pygame.image.load(TANK_UP), (width, height))
         #size
         self.width = width
         self.height = height
@@ -25,13 +25,18 @@ class Player(pygame.sprite.Sprite):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
             self.rect.x -= 2
-            self.image = pygame.transform.rotate(self.image, 90)
-        if keys[pygame.K_d]:
+            self.image = pygame.transform.scale(pygame.image.load(TANK_LEFT), (self.width, self.height))
+        elif keys[pygame.K_d]:
             self.rect.x += 2
-        if keys[pygame.K_w]:
+            self.image = pygame.transform.scale(pygame.image.load(TANK_RIGHT), (self.width, self.height))
+
+        elif keys[pygame.K_w]:
             self.rect.y-= 2
-        if keys[pygame.K_s]:
+            self.image = pygame.transform.scale(pygame.image.load(TANK_UP), (self.width, self.height))
+        elif keys[pygame.K_s]:
             self.rect.y+= 2
+            self.image = pygame.transform.scale(pygame.image.load(TANK_DOWN), (self.width, self.height))
+
 
         #dont go off screen
         if self.rect.x <= 0:

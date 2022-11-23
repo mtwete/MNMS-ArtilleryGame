@@ -15,7 +15,10 @@ IMAGES_DIR = os.path.join(MAIN_DIR, "resources/images")
 TANKS_DIR = os.path.join(MAIN_DIR, "resources/images/tanks")
 
 TARGET_IMAGE = os.path.join(IMAGES_DIR, "target.png")
-TANK_IMAGE = os.path.join(TANKS_DIR, "tile007.png")
+TANK_LEFT = os.path.join(TANKS_DIR, "tank_left.png")
+TANK_UP =os.path.join(TANKS_DIR, "tank_up.png")
+TANK_RIGHT = os.path.join(TANKS_DIR, "tank_right.png")
+TANK_DOWN = os.path.join(TANKS_DIR, "tank_down.png")
 
 #static variable holding the list of background image file paths
 #with the first being the main menu image and the rest being the images for the

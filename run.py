@@ -73,7 +73,7 @@ while game_run:
         playerSprites.draw(display)
         targetSprites.draw(display)
         for missile in player_missile:
-            missile.display(display)
+            missile.display(display, player)
             points = shootingTarget.update(missile, player)
             if points is not None:
                 player.update_score(points)
