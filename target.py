@@ -41,11 +41,4 @@ class Target(pygame.sprite.Sprite):
             self.kill()
             return None
 
-    # def spawn_new_target(self, targetSprites, player):
-    #     self = Target()
-    #     targetSprites.add(self)
-    #     while pygame.Rect.colliderect(player.rect, self.rect):
-    #         self.kill()
-    #         self = Target()
-    #         targetSprites.add(self)
-    #     return self
+
