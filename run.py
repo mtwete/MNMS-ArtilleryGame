@@ -79,6 +79,9 @@ while game_run:
         missile_group.update()
         missile_group.draw(display)
 
+        hits = pygame.sprite.groupcollide(target_group, missile_group, True, True)
+        for hit in hits:
+            target_group.add(shootingTarget.spawn_new_target(target_group, player))
 
         timer.update_timer(display)
 
