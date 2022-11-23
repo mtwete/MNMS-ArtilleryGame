@@ -41,7 +41,7 @@ class Target(pygame.sprite.Sprite):
             self.kill()
             return None
 
-    def validate_no_collision(self, player):
+    def validate(self, player):
         if pygame.Rect.colliderect(player.rect, self.rect):
             self.kill()
             return None
