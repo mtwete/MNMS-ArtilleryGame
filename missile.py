@@ -17,7 +17,7 @@ class Missile:
         self.y_vel = math.sin(self.angle) * self.speed
         
     #display on screen
-    def main(self, display):
+    def display(self, display):
         self.x -= int(self.x_vel)
         self.y -= int(self.y_vel)
         pygame.draw.circle(display, (255, 255, 255), (self.x, self.y), 2)
