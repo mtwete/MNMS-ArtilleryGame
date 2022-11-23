@@ -11,7 +11,7 @@ from explosion import Explosion
 pygame.init()
 display = pygame.display.set_mode(DISPLAY_SIZE)
 clock = pygame.time.Clock()
-targetSprites = pygame.sprite.Group()
+target_group = pygame.sprite.Group()
 
 
 #background music
@@ -23,11 +23,10 @@ pygame.mixer.music.play(-1) # -1 to repeat song endlessly
 
 #tank instance
 player = Player(400, 300, 32, 32)
-player_missile = []
 
 #Add a target sprite with random size
 shootingTarget = Target()
-targetSprites.add(shootingTarget)
+target_group.add(shootingTarget)
 
 #set up background object and skip menu background
 game_background = Background(BACKGROUND_IMAGES_FILE_PATHS)
@@ -39,6 +38,7 @@ menu = Menu()
 game_state = None
 game_run = True
 
+missile_group = pygame.sprite.Group()
 while game_run:
     if game_state == START_GAME:
         if not timer.is_running():
@@ -61,22 +61,24 @@ while game_run:
             #bullet clicks    
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    player_missile.append(Missile(player.x, player.y, mouse_x, mouse_y))
+                    missile_group.add(Missile(player.x, player.y, mouse_x, mouse_y))
 
         #updates player movement
         player.update_player()
 
-
         #display tank, bullets and targets
         player.main(display)
-        targetSprites.draw(display)
-        for bullet in player_missile:
-            bullet.update(display)
-            points = shootingTarget.update(bullet)
-            if points is not None:
-                player.update_score(points)
-            if len(targetSprites.sprites()) == 0:
-                shootingTarget = shootingTarget.spawn_new_target(targetSprites, player)
+        target_group.draw(display)
+        # for bullet in missile_group:
+        #     bullet.update(display)
+        #     points = shootingTarget.update(bullet)
+        #     if points is not None:
+        #         player.update_score(points)
+        #     if len(target_group.sprites()) == 0:
+        #         shootingTarget = shootingTarget.spawn_new_target(target_group, player)
+        missile_group.update()
+        missile_group.draw(display)
+
 
         timer.update_timer(display)
 
