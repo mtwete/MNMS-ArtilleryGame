@@ -69,19 +69,16 @@ while game_run:
         #display tank, bullets and targets
         player.main(display)
         target_group.draw(display)
-        # for bullet in missile_group:
-        #     bullet.update(display)
-        #     points = shootingTarget.update(bullet)
-        #     if points is not None:
-        #         player.update_score(points)
-        #     if len(target_group.sprites()) == 0:
-        #         shootingTarget = shootingTarget.spawn_new_target(target_group, player)
+        
+        #update and display all missiles
         missile_group.update()
         missile_group.draw(display)
 
+        #check collision between target and missiles
         hits = pygame.sprite.groupcollide(target_group, missile_group, True, True)
-        for hit in hits:
-            target_group.add(shootingTarget.spawn_new_target(target_group, player))
+        for target in hits:
+            player.update_score(target.points)
+            target_group.add(target.spawn_new_target(target_group, player))
 
         timer.update_timer(display)
 
