@@ -6,6 +6,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         # image = pygame.image.load(TANK_UP)
         self.image = pygame.transform.scale(pygame.image.load(TANK_UP), (width, height))
+        self.direction = TANK_UP
         #size
         self.width = width
         self.height = height
@@ -26,16 +27,19 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_a]:
             self.rect.x -= 2
             self.image = pygame.transform.scale(pygame.image.load(TANK_LEFT), (self.width, self.height))
+            self.direction = TANK_LEFT
         elif keys[pygame.K_d]:
             self.rect.x += 2
             self.image = pygame.transform.scale(pygame.image.load(TANK_RIGHT), (self.width, self.height))
-
+            self.direction = TANK_RIGHT
         elif keys[pygame.K_w]:
             self.rect.y-= 2
             self.image = pygame.transform.scale(pygame.image.load(TANK_UP), (self.width, self.height))
+            self.direction = TANK_UP
         elif keys[pygame.K_s]:
             self.rect.y+= 2
             self.image = pygame.transform.scale(pygame.image.load(TANK_DOWN), (self.width, self.height))
+            self.direction = TANK_DOWN
 
 
         #dont go off screen
