@@ -71,6 +71,7 @@ while game_run:
 
         #display tank, bullets and targets
         playerSprites.draw(display)
+        shootingTarget.validate(player)
         targetSprites.draw(display)
         for missile in player_missile:
             missile.display(display, player)
