@@ -5,6 +5,7 @@ from target import Target
 from background import Background
 from menu import Menu
 from timer import Timer
+from explosion import Explosion
 
 #initialize pygame, display, clock and target sprites
 pygame.init()
@@ -38,6 +39,8 @@ menu = Menu()
 game_state = None
 game_run = True
 
+explosion_group = pygame.sprite.Group()
+
 while game_run:
     if game_state == START_GAME:
         if not timer.is_running():
@@ -51,6 +54,9 @@ while game_run:
         #get mouse click position
         mouse_x , mouse_y = pygame.mouse.get_pos()
 
+        explosion_group.draw(display)
+        explosion_group.update()
+
         #check for events in game
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -61,6 +67,8 @@ while game_run:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     player_missile.append(Missile(player.x, player.y, mouse_x, mouse_y))
+                    explosion = Explosion(mouse_x, mouse_y)
+                    explosion_group.add(explosion)
 
         #updates player movement
         player.update_player()
