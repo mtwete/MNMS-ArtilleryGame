@@ -4,7 +4,7 @@ import math
 class Missile:
     def __init__(self, x, y, mouse_x, mouse_y):
         #location
-        self.x = x
+        self.x = x  
         self.y = y
         #mouse clicks
         self.mouse_x = mouse_x
@@ -20,4 +20,4 @@ class Missile:
     def display(self, display, player):
         self.x -= int(self.x_vel)
         self.y -= int(self.y_vel)
-        pygame.draw.circle(display, (255, 255, 255), (self.x + (player.width /2), self.y + (player.height / 2)), 2)
+        pygame.draw.circle(display, (255, 255, 255), (self.x, self.y), 2)

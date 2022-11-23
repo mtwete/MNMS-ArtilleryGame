@@ -63,7 +63,7 @@ while game_run:
             #bullet clicks    
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    player_missile.append(Missile(player.rect.x, player.rect.y, mouse_x, mouse_y))
+                    player_missile.append(Missile(player.rect.x + (player.width /2), player.rect.y + (player.height / 2), mouse_x, mouse_y))
 
         #updates player movement
         player.update_player()
