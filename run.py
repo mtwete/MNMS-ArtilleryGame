@@ -45,7 +45,7 @@ while game_run:
         if not timer.is_running():
             timer.start_timer()
 
-        display.blit(game_background.image,game_background.loc)
+        display.blit(game_background.image, game_background.loc)
 
         #Display the current score of the player
         player.display_score(display)

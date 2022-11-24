@@ -11,7 +11,7 @@ class Menu(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
         #add welcome message to menu screen
-        self.text = pygame.font.SysFont("arialblack", 50).render("Welcome Player", True, 'white')
+        self.text = pygame.font.SysFont("arialblack", 50).render("Welcome Player", True, 'white').convert_alpha()
         self.textpos = self.text.get_rect(centerx=self.rect.width/2, centery=self.rect.height/5)
         self.image.blit(self.text, self.textpos) 
 

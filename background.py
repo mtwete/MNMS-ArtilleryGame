@@ -19,7 +19,7 @@ class Background(pygame.sprite.Sprite):
         #counter variable to keep track of which image in the list is being displayed
         self.level_background_num = 0
         #initialize first background image to use as the main menu background
-        self.image = pygame.image.load(self.background_file_list[self.level_background_num])
+        self.image = pygame.image.load(self.background_file_list[self.level_background_num]).convert()
         #set up rect object, location to display the background from, and left and top fields of
         #rect
         self.rect = self.image.get_rect()
@@ -38,7 +38,7 @@ class Background(pygame.sprite.Sprite):
         else:
             self.level_background_num += 1
         #update the image to the new background
-        self.image = pygame.image.load(self.background_file_list[self.level_background_num])
+        self.image = pygame.image.load(self.background_file_list[self.level_background_num]).convert()
 
 
     #function to change the background image back to the one for the main menu
@@ -46,7 +46,7 @@ class Background(pygame.sprite.Sprite):
         #change the background level number back to the main menu background index
         self.level_background_num = 0
         #update the image to display the main menu image
-        self.image = pygame.image.load(self.background_file_list[self.level_background_num])
+        self.image = pygame.image.load(self.background_file_list[self.level_background_num]).convert()
 
 
 

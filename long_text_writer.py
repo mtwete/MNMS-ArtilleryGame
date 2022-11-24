@@ -16,7 +16,7 @@ class LongTextWriter(pygame.sprite.Sprite):
 
     def update(self):
         self.render_long_text()
-        self.image = pygame.Surface((self.width, self.line_height*self.line), pygame.SRCALPHA)
+        self.image = pygame.Surface((self.width, self.line_height*self.line), pygame.SRCALPHA).convert_alpha()
         self.rect = self.image.get_rect()
         self.image.blits(self.rendered_group)
 
