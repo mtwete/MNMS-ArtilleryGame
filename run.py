@@ -12,7 +12,8 @@ pygame.init()
 display = pygame.display.set_mode(DISPLAY_SIZE)
 clock = pygame.time.Clock()
 target_group = pygame.sprite.Group()
-
+pygame.event.set_blocked([pygame.MOUSEMOTION, pygame.ACTIVEEVENT, pygame.WINDOWLEAVE, pygame.WINDOWENTER])
+pygame.display.set_caption("MNMS-ArtilleryGame")
 
 #background music
 pygame.mixer.init()
