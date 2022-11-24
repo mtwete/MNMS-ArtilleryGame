@@ -7,6 +7,3 @@ __pycache__/
 #ignore all data from coverage.py
 .coverage
 htmlcov/
-
-#ignore macOS folder attribute settings
-.DS_Store
