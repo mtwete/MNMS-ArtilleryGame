@@ -5,7 +5,7 @@ from long_text_writer import LongTextWriter
 
 class TestLongTextWriter(unittest.TestCase):
     def setUp(self) -> None:
-        # pygame.font.init()
+        pygame.font.init()
         self.text = """
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
         sed do eiusmod tempor incididunt ut labore et dolore 
