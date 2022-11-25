@@ -7,7 +7,7 @@ class Explosion(pygame.sprite.Sprite):
         self.images = []
         for num in range(5):
             img_path = os.path.join(IMAGES_DIR, f'explosions/explosion_{str(num)}.png')
-            img = pygame.image.load(f"{img_path}").convert_alpha()
+            img = pygame.image.load(f"{img_path}")
             img = pygame.transform.scale(img, (scale[0] + 30, scale[1] + 30))
             self.images.append(img)
         self.index = 0

@@ -9,7 +9,7 @@ class Button(pygame.sprite.Sprite):
         self.shadow_color = CLAIRVOYANT
 
         #create transparent button surface
-        self.image = pygame.Surface((250, 60), pygame.SRCALPHA).convert_alpha()
+        self.image = pygame.Surface((250, 60), pygame.SRCALPHA)
         self.rect = self.image.get_rect(centerx=center_x, centery=center_y)
 
     def update(self):
@@ -27,7 +27,7 @@ class Button(pygame.sprite.Sprite):
         self.button = pygame.draw.rect(self.image, self.button_color, self.button_rect, border_radius=15)
 
         #add text on button
-        self.text = pygame.font.SysFont("arialblack", 30).render(self.value, True, 'black').convert_alpha()
+        self.text = pygame.font.SysFont("arialblack", 30).render(self.value, True, 'black')
         self.textpos = self.text.get_rect(center=self.button.center)
         self.image.blit(self.text, self.textpos)
 

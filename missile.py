@@ -3,7 +3,7 @@ from constants import *
 class Missile(pygame.sprite.Sprite):
     def __init__(self, x, y, mouse_x, mouse_y):
         super().__init__()
-        self.image = pygame.Surface((4, 4), pygame.SRCALPHA).convert_alpha()
+        self.image = pygame.Surface((4, 4), pygame.SRCALPHA)
         self.rect = self.image.get_rect(center=(x, y))
         self.color = 'white'
         #speed of missile

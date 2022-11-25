@@ -50,10 +50,10 @@ class Player(pygame.sprite.Sprite):
         score_font = pygame.font.SysFont('cambria', 26)
         #create a surface with the current score in red text that you can
         #blit onto a different surface, the score will be red, hence (255,0,0), for visibility
-        score_display = score_font.render("Score: " + str(self.score),1,(255,0,0)).convert_alpha()
+        score_display = score_font.render("Score: " + str(self.score),1,(255,0,0))
         #Get the rectangle size of the text, so a background box of the right size can be drawn
         score_size = score_display.get_rect()
-        score_box = pygame.Surface((score_size.w, score_size.h)).convert_alpha()
+        score_box = pygame.Surface((score_size.w, score_size.h))
         score_box.fill("black")
         #variable for the display location of the player score, it will be in the lower left corner
         #and offset upwards by the score text box height so it isn't off the screen

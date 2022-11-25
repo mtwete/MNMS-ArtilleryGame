@@ -23,7 +23,7 @@ class Target(pygame.sprite.Sprite):
     """
     def __init__(self):
         super().__init__()
-        image = pygame.image.load(TARGET_IMAGE).convert_alpha()
+        image = pygame.image.load(TARGET_IMAGE)
         target_attr = random.choice(list(TargetAttr))
         self.image = pygame.transform.scale(image, (target_attr.width, target_attr.height))
         self.name = target_attr.name
