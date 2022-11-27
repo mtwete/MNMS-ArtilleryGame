@@ -2,6 +2,7 @@ import os
 import pygame
 import sys
 import random
+import math
 
 DISPLAY_SIZE = (800, 600)
 TIMER_SECONDS = 100
