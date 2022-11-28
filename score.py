@@ -5,16 +5,16 @@ class Score(pygame.sprite.Sprite):
     def __init__(self, value, size, center, display_rect: pygame.Rect) -> None:
         super().__init__()
         self.value = value
-        self.margin = size
+        self.size = 20 + size//2
         self.color1 = "yellow"
         self.color2 = "red"
         self.text_color = self.color1
-        self.font = pygame.font.SysFont("arial", size)
+        self.font = pygame.font.SysFont("arial", self.size)
         self.image = self.font.render(f'+{self.value}', True, self.text_color)
         self.rect = self.image.get_rect(center=center)
-        self.rect.y -= self.margin
+        self.rect.y -= self.size
         if not display_rect.contains(self.rect):
-            self.rect.y += self.margin * 2
+            self.rect.y += self.size * 2
         self.times = 4
         self.speed = 10
         self.count = 0
