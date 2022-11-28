@@ -66,7 +66,7 @@ while game_run:
         hits = pygame.sprite.groupcollide(target_group, missile_group, True, True)
         for target in hits:
             explosion_group.add(Explosion(target.rect.centerx, target.rect.centery, target.rect.size))
-            score_group.add(Score(target.points, target.rect.width, target.rect.center))
+            score_group.add(Score(target.points, target.rect.width, target.rect.center, display.get_rect()))
             player.update_score(target.points)
             target_group.add(target.spawn_new_target(target_group, player))
 

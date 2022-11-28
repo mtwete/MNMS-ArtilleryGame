@@ -2,16 +2,19 @@ from constants import *
 
 class Score(pygame.sprite.Sprite):
 
-    def __init__(self, value, size, center) -> None:
+    def __init__(self, value, size, center, display_rect: pygame.Rect) -> None:
         super().__init__()
         self.value = value
+        self.margin = size
         self.color1 = "yellow"
         self.color2 = "red"
         self.text_color = self.color1
         self.font = pygame.font.SysFont("arial", size)
         self.image = self.font.render(f'+{self.value}', True, self.text_color)
         self.rect = self.image.get_rect(center=center)
-        self.rect.y -= size
+        self.rect.y -= self.margin
+        if not display_rect.contains(self.rect):
+            self.rect.y += self.margin * 2
         self.times = 4
         self.speed = 10
         self.count = 0
