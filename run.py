@@ -5,13 +5,14 @@ from target import Target
 from background import Background
 from menu import Menu
 from timer import Timer
+from explosion import Explosion
 
 #initialize pygame, display, clock and target sprites
 pygame.init()
 display = pygame.display.set_mode(DISPLAY_SIZE)
 clock = pygame.time.Clock()
-targetSprites = pygame.sprite.Group()
-playerSprites = pygame.sprite.Group()
+player_group = pygame.sprite.Group()
+target_group = pygame.sprite.Group()
 
 
 #background music
@@ -23,13 +24,12 @@ pygame.mixer.music.play(-1) # -1 to repeat song endlessly
 
 #tank instance
 player = Player(400, 300, 75, 75)
-player_missile = []
 
 #Add a target sprite with random size
 shootingTarget = Target()
-targetSprites.add(shootingTarget)
+target_group.add(shootingTarget)
 
-playerSprites.add(player)
+player_group.add(player)
 
 #set up background object and skip menu background
 game_background = Background(BACKGROUND_IMAGES_FILE_PATHS)
@@ -41,6 +41,8 @@ menu = Menu()
 game_state = None
 game_run = True
 
+missile_group = pygame.sprite.Group()
+explosion_group = pygame.sprite.Group()
 while game_run:
     if game_state == START_GAME:
         if not timer.is_running():
@@ -63,26 +65,34 @@ while game_run:
             #bullet clicks    
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    player_missile.append(Missile(player.rect.x, player.rect.y, player))
+                    missile_group.add(Missile(player.rect.x, player.rect.y, player))
 
         #updates player movement
         player.update_player()
 
-
         #display tank, bullets and targets
-        playerSprites.draw(display)
-        shootingTarget.validate(player)
-        targetSprites.draw(display)
-        for missile in player_missile:
-            missile.display(display, player)
-            points = shootingTarget.update(missile, player)
-            if points is not None:
-                player.update_score(points)
-            if len(targetSprites.sprites()) == 0:
-                shootingTarget = Target()
-                targetSprites.add(shootingTarget)
+        player.display_score(display)
+        target_group.draw(display)
+        player_group.draw(display)
+        
+        #update and display all missiles
+        missile_group.update()
+        missile_group.draw(display)
 
+        explosion_group.update()
+        explosion_group.draw(display)
+        pygame.sprite.groupcollide(explosion_group, missile_group, False, True)
 
+        #check collision between target and missiles
+        hits = pygame.sprite.groupcollide(target_group, missile_group, True, True)
+        for target in hits:
+            explosion_group.add(Explosion(target.rect.centerx, target.rect.centery, target.rect.size))
+            player.update_score(target.points)
+            target_group.add(Target())
+        hits = pygame.sprite.groupcollide(target_group, player_group, True, False)
+        for target in hits:
+            target_group.add(Target())
+            
         timer.update_timer(display)
 
     elif game_state == LEADER_BOARD:
