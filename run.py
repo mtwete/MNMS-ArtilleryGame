@@ -6,6 +6,7 @@ from background import Background
 from menu import Menu
 from timer import Timer
 from explosion import Explosion
+from score import Score
 
 #initialize pygame, display, clock and target sprites
 pygame.init()
@@ -40,6 +41,7 @@ game_run = True
 
 missile_group = pygame.sprite.Group()
 explosion_group = pygame.sprite.Group()
+score_group = pygame.sprite.Group()
 while game_run:
     if game_state == START_GAME:
         if not timer.is_running():
@@ -78,11 +80,14 @@ while game_run:
         explosion_group.update()
         explosion_group.draw(display)
         pygame.sprite.groupcollide(explosion_group, missile_group, False, True)
+        score_group.update()
+        score_group.draw(display)
 
         #check collision between target and missiles
         hits = pygame.sprite.groupcollide(target_group, missile_group, True, True)
         for target in hits:
             explosion_group.add(Explosion(target.rect.centerx, target.rect.centery, target.rect.size))
+            score_group.add(Score(target.points, target.rect.width, target.rect.center))
             player.update_score(target.points)
             target_group.add(target.spawn_new_target(target_group, player))
 
