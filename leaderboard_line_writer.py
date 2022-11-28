@@ -40,9 +40,8 @@ class LeaderboardLineWriter(pygame.sprite.Sprite):
 
     # Render all the lines in the leaderboard score string
     def render_all_lines(self):
-        # Split the score string into lines
+        # Split the score string into lines and render each
         score_lines = self.leaderboard_scores_text.splitlines()
-        # Render each line
         for line in score_lines:
             self.render_score_line(line)
 
