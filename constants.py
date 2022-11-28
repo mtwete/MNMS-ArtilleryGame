@@ -29,3 +29,12 @@ CLAIRVOYANT = (100, 14, 110)
 START_GAME = "Start Game"
 LEADER_BOARD = "Leader Board"
 EXIT_GAME = "Exit Game"
+
+def create_sprite_groups(number_of_groups: int = 1):
+    if number_of_groups == 1:
+        return pygame.sprite.Group()
+
+    groups = []
+    for it in range(number_of_groups):
+        groups.append(pygame.sprite.Group())
+    return groups

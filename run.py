@@ -17,11 +17,7 @@ clock = pygame.time.Clock()
 timer = Timer()
 menu = Menu()
 
-missile_group = pygame.sprite.Group()
-explosion_group = pygame.sprite.Group()
-score_group = pygame.sprite.Group()
-target_group = pygame.sprite.Group()
-
+missile_group, explosion_group, score_group, target_group = create_sprite_groups(4)
 
 #background music
 pygame.mixer.init()
@@ -48,20 +44,6 @@ while game_run:
 
         #Display the current score of the player
         player.display_score(display)
-
-        #get mouse click position
-        mouse_x , mouse_y = pygame.mouse.get_pos()
-
-        #check for events in game
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-                pygame.QUIT
-
-            #bullet clicks    
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    missile_group.add(Missile(player.x, player.y, mouse_x, mouse_y))
 
         #updates player movement
         player.update_player()
@@ -102,11 +84,17 @@ while game_run:
         menu.draw()
         game_state = menu.check_button_click()
 
-        #check for events in game
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-                pygame.QUIT
+    #check for events in game
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            game_run = False
+        #bullet clicks    
+        if event.type == pygame.MOUSEBUTTONDOWN and game_state == START_GAME:
+            if event.button == 1:
+                mouse_x , mouse_y = pygame.mouse.get_pos()
+                missile_group.add(Missile(player.x, player.y, mouse_x, mouse_y))
 
     clock.tick(60)
     pygame.display.update()
+
+sys.exit()
