@@ -41,12 +41,6 @@ class Leaderboard(pygame.sprite.Sprite):
 
     #Method to check for button clicks
     def check_button_click(self):
-        #Since run.py goes to the main menu logic when game state is None
-        #if the user clicks the return button and it will return the return button
-        #string, so return None instead so the game state will make the main menu logic
-        #to run
-        if self.return_button.check_click() is not None:
-            return None
-        #Check for exit button click, if there's nothing stay at the leaderboard
-        return self.exit_button.check_click() or LEADER_BOARD
+        #Check for exit button or main menu click, if there's nothing stay at the leaderboard
+        return self.return_button.check_click() or self.exit_button.check_click() or LEADER_BOARD
 

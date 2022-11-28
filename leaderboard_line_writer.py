@@ -46,11 +46,11 @@ class LeaderboardLineWriter(pygame.sprite.Sprite):
             self.render_score_line(line)
 
     # Render an individual score line
+    # line = line to render
     def render_score_line(self, line):
         # The lines have tabs separating some values which pygame doesn't line,
         # so replace the tabs with 4 spaces
         reformatted_line = line.replace('\t', ' ' * 4)
-        # Render the line
         score_line = self.font.render(reformatted_line, True, 'white')
         # Set up proper position, so they are space right
         position = score_line.get_rect()
