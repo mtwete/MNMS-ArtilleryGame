@@ -10,8 +10,16 @@ from score import Score
 
 #initialize pygame, display, clock and target sprites
 pygame.init()
+pygame.event.set_blocked([pygame.MOUSEMOTION, pygame.ACTIVEEVENT, pygame.WINDOWLEAVE, pygame.WINDOWENTER])
+pygame.display.set_caption("MNMS-ArtilleryGame")
 display = pygame.display.set_mode(DISPLAY_SIZE)
 clock = pygame.time.Clock()
+timer = Timer()
+menu = Menu()
+
+missile_group = pygame.sprite.Group()
+explosion_group = pygame.sprite.Group()
+score_group = pygame.sprite.Group()
 target_group = pygame.sprite.Group()
 
 
@@ -22,26 +30,15 @@ pygame.mixer.music.set_volume(MUSIC_VOLUME_PERCENTAGE)
 pygame.mixer.music.play(-1) # -1 to repeat song endlessly
 
 
-#tank instance
 player = Player(400, 300, 32, 32)
-
-#Add a target sprite with random size
-shootingTarget = Target()
-target_group.add(shootingTarget)
+target_group.add(Target())
 
 #set up background object and skip menu background
 game_background = Background(BACKGROUND_IMAGES_FILE_PATHS)
 game_background.increment_level_background()
 
-timer = Timer()
-
-menu = Menu()
 game_state = None
 game_run = True
-
-missile_group = pygame.sprite.Group()
-explosion_group = pygame.sprite.Group()
-score_group = pygame.sprite.Group()
 while game_run:
     if game_state == START_GAME:
         if not timer.is_running():
