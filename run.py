@@ -71,6 +71,8 @@ while game_run:
             target_group.add(target.spawn_new_target(target_group, player))
 
         timer.update_timer(display)
+        if not timer.is_running():
+            game_state = MAIN_MENU
 
     elif game_state == LEADER_BOARD:
         print("game state:", game_state)
