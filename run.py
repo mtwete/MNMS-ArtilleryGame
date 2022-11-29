@@ -103,7 +103,6 @@ while game_run:
         #bullet fires with spacebar
         if event.type == pygame.KEYDOWN and game_state == START_GAME:
             if event.key == pygame.K_SPACE:
-                mouse_x , mouse_y = pygame.mouse.get_pos()
                 missile_group.add(Missile(player.rect.x, player.rect.y, player))
 
     clock.tick(60)
