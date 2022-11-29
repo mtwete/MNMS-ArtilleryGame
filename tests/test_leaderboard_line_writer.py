@@ -5,7 +5,7 @@ from leaderboard_line_writer import LeaderboardLineWriter
 
 class TestLeaderboardLineWriter(unittest.TestCase):
     def setUp(self) -> None:
-        pygame.font.init()
+        pygame.init()
         #Values of the leaderboard background rect and title text rect
         #needed for the constructor
         self.background_rect_width = 800
