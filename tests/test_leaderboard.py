@@ -1,7 +1,5 @@
 import unittest
-from unittest.mock import MagicMock
 import pygame
-import Le
 from leaderboard import Leaderboard
 
 
