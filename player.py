@@ -3,41 +3,63 @@ from constants import *
 #player tank
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
-        #location
-        self.x = x
-        self.y = y
+        super().__init__()
+
+        # image = pygame.image.load(TANK_UP)
+        self.image = pygame.transform.scale(pygame.image.load(TANK_UP), (width, height))
+        self.direction = TANK_UP
+
         #size
         self.width = width
         self.height = height
+
+        #starting coordinates for the player 
+            #(not the player image)
+        self.x = x
+        self.y = y
+
+        #display
+        self.rect = self.image.get_rect()
+
+        #update image location
+        self.rect.x = self.x
+        self.rect.y = self.y
+        
         #scorekeep
         self.score = 0
-
-    #draw on screen
-    def main(self, display):
-        pygame.draw.rect(display, (255, 0, 0), (self.x, self.y, self.width, self.height))
 
     def update_player(self):
 
         #tank movement
+        #also updates the tank image to be facing in the direction of movement
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
-            self.x -= 2
-        if keys[pygame.K_d]:
-            self.x += 2
-        if keys[pygame.K_w]:
-            self.y-= 2
-        if keys[pygame.K_s]:
-            self.y+= 2
+            self.rect.x -= 2
+            self.image = pygame.transform.scale(pygame.image.load(TANK_LEFT), (self.width, self.height))
+            self.direction = TANK_LEFT
+        elif keys[pygame.K_d]:
+            self.rect.x += 2
+            self.image = pygame.transform.scale(pygame.image.load(TANK_RIGHT), (self.width, self.height))
+            self.direction = TANK_RIGHT
+        elif keys[pygame.K_w]:
+            self.rect.y-= 2
+            self.image = pygame.transform.scale(pygame.image.load(TANK_UP), (self.width, self.height))
+            self.direction = TANK_UP
+        elif keys[pygame.K_s]:
+            self.rect.y+= 2
+            self.image = pygame.transform.scale(pygame.image.load(TANK_DOWN), (self.width, self.height))
+            self.direction = TANK_DOWN
 
-        #dont go off screen
-        if self.x <= 0:
-            self.x = 0
-        if self.x >= 766:
-            self.x = 766
-        if self.y <= 0:
-            self.y = 0
-        if self.y >= 566:
-            self.y = 566 
+
+        #stops player from going off screen
+        if self.rect.x <= 0:
+            self.rect.x = 0
+        if self.rect.x >= 766:
+            self.rect.x = 766
+        if self.rect.y <= 0:
+            self.rect.y = 0
+        if self.rect.y >= 566:
+            self.rect.y = 566 
 
     def update_score(self, add_point=1):
         self.score += add_point

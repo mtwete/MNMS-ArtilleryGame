@@ -17,7 +17,8 @@ clock = pygame.time.Clock()
 timer = Timer()
 menu = Menu()
 
-missile_group, explosion_group, score_group, target_group = create_sprite_groups(4)
+#sprite groups for the different classes of images
+missile_group, explosion_group, score_group, target_group, player_group = create_sprite_groups(5)
 
 #background music
 pygame.mixer.init()
@@ -26,8 +27,10 @@ pygame.mixer.music.set_volume(MUSIC_VOLUME_PERCENTAGE)
 pygame.mixer.music.play(-1) # -1 to repeat song endlessly
 
 
-player = Player(400, 300, 32, 32)
+player = Player(400, 300, 75, 75)
 target_group.add(Target())
+
+player_group.add(player)
 
 #set up background object and skip menu background
 game_background = Background(BACKGROUND_IMAGES_FILE_PATHS)
@@ -49,8 +52,9 @@ while game_run:
         player.update_player()
 
         #display tank, bullets and targets
-        player.main(display)
+        player.display_score(display)
         target_group.draw(display)
+        player_group.draw(display)
         
         #update and display all missiles
         missile_group.update()
@@ -68,8 +72,13 @@ while game_run:
             explosion_group.add(Explosion(target.rect.centerx, target.rect.centery, target.rect.size))
             score_group.add(Score(target.points, target.rect.width, target.rect.center, display.get_rect()))
             player.update_score(target.points)
-            target_group.add(target.spawn_new_target(target_group, player))
-
+            target_group.add(Target())
+        #checks for player tank / target collision. removes target with no explosion and no points given
+        hits = pygame.sprite.groupcollide(target_group, player_group, True, False)
+        for target in hits:
+            target_group.add(Target())
+            
+        #countdown timer update
         timer.update_timer(display)
         if not timer.is_running():
             game_state = MAIN_MENU
@@ -90,11 +99,11 @@ while game_run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_run = False
-        #bullet clicks    
-        if event.type == pygame.MOUSEBUTTONDOWN and game_state == START_GAME:
-            if event.button == 1:
-                mouse_x , mouse_y = pygame.mouse.get_pos()
-                missile_group.add(Missile(player.x, player.y, mouse_x, mouse_y))
+            
+        #bullet fires with spacebar
+        if event.type == pygame.KEYDOWN and game_state == START_GAME:
+            if event.key == pygame.K_SPACE:
+                missile_group.add(Missile(player.rect.x, player.rect.y, player))
 
     clock.tick(60)
     pygame.display.update()
