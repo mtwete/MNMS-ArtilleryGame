@@ -17,6 +17,7 @@ clock = pygame.time.Clock()
 timer = Timer()
 menu = Menu()
 
+#sprite groups for the different classes of images
 missile_group, explosion_group, score_group, target_group, player_group = create_sprite_groups(5)
 
 #background music
@@ -72,10 +73,12 @@ while game_run:
             score_group.add(Score(target.points, target.rect.width, target.rect.center, display.get_rect()))
             player.update_score(target.points)
             target_group.add(Target())
+        #checks for player tank / target collision. removes target with no explosion and no points given
         hits = pygame.sprite.groupcollide(target_group, player_group, True, False)
         for target in hits:
             target_group.add(Target())
             
+        #countdown timer update
         timer.update_timer(display)
         if not timer.is_running():
             game_state = MAIN_MENU
@@ -96,7 +99,8 @@ while game_run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_run = False
-        #bullet clicks    
+            
+        #bullet fires with spacebar
         if event.type == pygame.KEYDOWN and game_state == START_GAME:
             if event.key == pygame.K_SPACE:
                 mouse_x , mouse_y = pygame.mouse.get_pos()

@@ -4,25 +4,34 @@ from constants import *
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         super().__init__()
+
         # image = pygame.image.load(TANK_UP)
         self.image = pygame.transform.scale(pygame.image.load(TANK_UP), (width, height))
         self.direction = TANK_UP
+
         #size
         self.width = width
         self.height = height
+
+        #starting coordinates for the player 
+            #(not the player image)
         self.x = x
         self.y = y
+
         #display
         self.rect = self.image.get_rect()
-        #location
+
+        #update image location
         self.rect.x = self.x
         self.rect.y = self.y
+        
         #scorekeep
         self.score = 0
 
     def update_player(self):
 
         #tank movement
+        #also updates the tank image to be facing in the direction of movement
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
             self.rect.x -= 2
@@ -42,7 +51,7 @@ class Player(pygame.sprite.Sprite):
             self.direction = TANK_DOWN
 
 
-        #dont go off screen
+        #stops player from going off screen
         if self.rect.x <= 0:
             self.rect.x = 0
         if self.rect.x >= 766:
