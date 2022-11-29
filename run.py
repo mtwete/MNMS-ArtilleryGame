@@ -63,8 +63,8 @@ while game_run:
                 pygame.QUIT
 
             #bullet clicks    
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
                     missile_group.add(Missile(player.rect.x, player.rect.y, player))
 
         #updates player movement

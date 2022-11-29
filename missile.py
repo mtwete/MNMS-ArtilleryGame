@@ -15,7 +15,6 @@ class Missile(pygame.sprite.Sprite):
 
         #location
 
-
         #mouse clicks
         if player.direction == TANK_UP:
             self.direction_x = player.rect.x
