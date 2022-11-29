@@ -13,11 +13,6 @@ class Player(pygame.sprite.Sprite):
         self.width = width
         self.height = height
 
-        #starting coordinates for the player 
-            #(not the player image)
-        # self.x = x
-        # self.y = y
-
         #display
         self.rect = self.image.get_rect()
 
