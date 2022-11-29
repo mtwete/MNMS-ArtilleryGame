@@ -15,15 +15,15 @@ class Player(pygame.sprite.Sprite):
 
         #starting coordinates for the player 
             #(not the player image)
-        self.x = x
-        self.y = y
+        # self.x = x
+        # self.y = y
 
         #display
         self.rect = self.image.get_rect()
 
         #update image location
-        self.rect.x = self.x
-        self.rect.y = self.y
+        self.rect.x = x
+        self.rect.y = y
         
         #scorekeep
         self.score = 0

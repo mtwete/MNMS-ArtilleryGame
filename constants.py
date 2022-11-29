@@ -7,8 +7,20 @@ import math
 DISPLAY_SIZE = (800, 600)
 TIMER_SECONDS = 100
 
+#Sound Mixer
+
+#music
 MUSIC_VOLUME_PERCENTAGE = .03
 MUSIC_FILE_PATH = 'resources/Disco_Heavy.mp3'
+#background music
+pygame.mixer.init()
+pygame.mixer.music.load(MUSIC_FILE_PATH)
+pygame.mixer.music.set_volume(MUSIC_VOLUME_PERCENTAGE)
+pygame.mixer.music.play(-1) # -1 to repeat song endlessly
+#SFX
+EXPLOSION_SFX = pygame.mixer.Sound(os.path.join("resources/explosion.ogg"))
+EXPLOSION_SFX.set_volume(0.05) #15 percent volume
+
 
 
 MAIN_DIR = os.path.dirname(__file__)
