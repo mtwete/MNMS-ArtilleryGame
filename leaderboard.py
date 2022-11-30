@@ -44,3 +44,9 @@ class Leaderboard(pygame.sprite.Sprite):
         #Check for exit button or main menu click, if there's nothing stay at the leaderboard
         return self.return_button.check_click() or self.exit_button.check_click() or LEADER_BOARD
 
+    #Method to update leaderboard in case a new score has been added to the game_score_list
+    #leaderboard_scores = string with leaderboard scores from the game_score_list
+    #leaderboard_string method
+    def update_scores(self,leaderboard_scores):
+        self.leaderboard_scores = leaderboard_scores
+
