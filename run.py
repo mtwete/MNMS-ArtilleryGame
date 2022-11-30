@@ -1,4 +1,7 @@
 from constants import *
+from game_score import GameScore
+from game_score_writer import ScoreFileWriter
+from input_name import InputName
 from player import Player
 from missile import Missile
 from target import Target
@@ -19,10 +22,11 @@ display = pygame.display.set_mode(DISPLAY_SIZE)
 clock = pygame.time.Clock()
 timer = Timer()
 menu = Menu()
-leaderboard_score_file = open(LEADERBOARD_SCORE_FILE_PATH)
+leaderboard_score_file = open(LEADERBOARD_SCORE_FILE_PATH, 'r')
 score_file_reader = ScoreFileReader(leaderboard_score_file)
 game_score_list = score_file_reader.read_scores()
 leaderboard = Leaderboard(game_score_list.leaderboard_string())
+input_name = InputName()
 
 #sprite groups for the different classes of images
 missile_group, explosion_group, score_group, target_group, player_group = create_sprite_groups(5)
@@ -88,7 +92,21 @@ while game_run:
         #countdown timer update
         timer.update_timer(display)
         if not timer.is_running():
-            game_state = MAIN_MENU
+            game_state = GET_NAME
+
+    elif game_state == GET_NAME:
+        display.blit(input_name.image, input_name.rect)
+        input_name.draw()
+        events = pygame.event.get()
+        input_name.input_box_update(events)
+
+        game_state = input_name.check_button_click()
+        if game_state == LEADER_BOARD:
+            game_score = GameScore(player.score+1020, input_name.text_input_box.value)
+            game_score_list.add_score(game_score)
+            input_name.reset()
+            # Need to create a new leaderboard in case the current score is in the top 10
+            leaderboard.update_scores(game_score_list.leaderboard_string())
 
     elif game_state == LEADER_BOARD:
         # display the leaderboard and check for button clicks
@@ -117,4 +135,8 @@ while game_run:
     clock.tick(60)
     pygame.display.update()
 
+#Write the leaderboard scores to the file
+leaderboard_score_file = open(LEADERBOARD_SCORE_FILE_PATH, 'w')
+game_score_writer = ScoreFileWriter(leaderboard_score_file,game_score_list)
+game_score_writer.write_scores()
 sys.exit()

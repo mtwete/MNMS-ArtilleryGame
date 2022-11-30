@@ -14,9 +14,9 @@ class ScoreFileWriter:
             # Doing this check just so the last call to write doesn't add a newline to the end
             # of the file
             if i != num_scores:
-                self.scoreFile.write(score.to_string+'\n')
+                self.scoreFile.write(score.to_string()+'\n')
             else:
-                self.scoreFile.write(score.to_string)
+                self.scoreFile.write(score.to_string())
         self.scoreFile.close()
 
 
