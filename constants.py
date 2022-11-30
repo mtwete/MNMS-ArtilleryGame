@@ -49,8 +49,10 @@ CLAIRVOYANT = (100, 14, 110)
 
 START_GAME = "Start Game"
 LEADER_BOARD = "Leader Board"
+GET_NAME = "Get Name"
 EXIT_GAME = "Exit Game"
 MAIN_MENU = "Main Menu"
+ENTER = "Enter"
 
 def create_sprite_groups(number_of_groups: int = 1):
     if number_of_groups == 1:
