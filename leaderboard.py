@@ -28,7 +28,7 @@ class Leaderboard(pygame.sprite.Sprite):
         self.image_original = self.image.copy()
 
         #Set up return to menu and exit game buttons
-        self.return_button = Button(RETURN_TO_MENU, center_x=self.rect.width / 2, center_y=self.rect.height / 2 + 160)
+        self.return_button = Button(MAIN_MENU, center_x=self.rect.width / 2, center_y=self.rect.height / 2 + 160)
         self.exit_button = Button(EXIT_GAME, center_x=self.rect.width / 2, center_y=self.rect.height / 2 + 240)
         self.button_group = pygame.sprite.Group()
         self.button_group.add(self.return_button, self.exit_button)
