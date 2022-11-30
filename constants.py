@@ -19,7 +19,7 @@ pygame.mixer.music.set_volume(MUSIC_VOLUME_PERCENTAGE)
 pygame.mixer.music.play(-1) # -1 to repeat song endlessly
 #SFX
 EXPLOSION_SFX = pygame.mixer.Sound(os.path.join("resources/explosion.ogg"))
-EXPLOSION_SFX.set_volume(0.05) #15 percent volume
+EXPLOSION_SFX.set_volume(0.025) #15 percent volume
 
 
 
