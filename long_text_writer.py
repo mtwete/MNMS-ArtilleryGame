@@ -2,18 +2,17 @@ from constants import *
 
 class LongTextWriter(pygame.sprite.Sprite):
 
-    def __init__(self, long_text, font='courier', size=16, color='white', width=300):
+    def __init__(self, long_text, font='courier', font_size=16, color='white', width=300):
         super().__init__()
         self.text = long_text
-        self.font = pygame.font.SysFont(font, size)
-        self.size = size
+        self.font = pygame.font.SysFont(font, font_size)
+        self.font_size = font_size
         self.width = width + 100
         self.color = color
-        self.line_height = size + 6
+        self.line_height = font_size + 6
         self.line_width = width
         self.line = 0
         self.rendered_group = []
-        self.update()
 
     def update(self):
         self.render_long_text()

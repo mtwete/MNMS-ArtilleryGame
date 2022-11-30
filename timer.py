@@ -25,7 +25,7 @@ class Timer():
         #when the timer ends, may want to change this to switch pages instead of quit
         if seconds < 0:
             self.running = False
-            sys.exit()
+            return
 
         #display the timer
         out = '{seconds:02d}'.format(seconds=seconds)
