@@ -40,6 +40,10 @@ MENU_BACKGROUND = os.path.join(IMAGES_DIR, 'Menu-Background-Resized.jpg')
 HEX_BACKGROUND = os.path.join(IMAGES_DIR, 'Hex-Background-Resized.jpg')
 BACKGROUND_IMAGES_FILE_PATHS = [MENU_BACKGROUND, HEX_BACKGROUND]
 
+#Leaderboard static variables
+LEADERBOARD_SCORE_FILE_PATH = os.path.join(MAIN_DIR, "resources/leaderboard_scores.txt")
+LEADERBOARD_TITLE = 'TOP SCORES:'
+
 RED_VIOLET = (202, 22, 142)
 CLAIRVOYANT = (100, 14, 110)
 
