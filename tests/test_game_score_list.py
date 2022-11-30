@@ -61,12 +61,12 @@ class TestGameScoreList(unittest.TestCase):
         for i in range(10):
             # Add scores to the game_score_manager
             score = GameScore(10-i, "Adam")
-            game_score_manager.add_score((score))
+            game_score_manager.add_score(score)
             # Generate the correct leaderboard_string
             if i != 9:
-                correct_leaderboard_string += score.to_string()+'\n'
+                correct_leaderboard_string += str(i+1)+'. '+score.to_string()+'\n'
             else:
-                correct_leaderboard_string += score.to_string()
+                correct_leaderboard_string += str(i+1)+'. '+score.to_string()
         leaderboard_string = game_score_manager.leaderboard_string()
         self.assertEqual(leaderboard_string, correct_leaderboard_string)
 

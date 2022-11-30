@@ -7,8 +7,11 @@ from menu import Menu
 from timer import Timer
 from explosion import Explosion
 from score import Score
+from score_file_reader import ScoreFileReader
+from leaderboard import Leaderboard
 
-#initialize pygame, display, clock and target sprites
+
+#initialize pygame, display, clock, leaderboard, gamescorelist, and target sprites
 pygame.init()
 pygame.event.set_blocked([pygame.MOUSEMOTION, pygame.ACTIVEEVENT, pygame.WINDOWLEAVE, pygame.WINDOWENTER])
 pygame.display.set_caption("MNMS-ArtilleryGame")
@@ -16,6 +19,10 @@ display = pygame.display.set_mode(DISPLAY_SIZE)
 clock = pygame.time.Clock()
 timer = Timer()
 menu = Menu()
+leaderboard_score_file = open(LEADERBOARD_SCORE_FILE_PATH)
+score_file_reader = ScoreFileReader(leaderboard_score_file)
+game_score_list = score_file_reader.read_scores()
+leaderboard = Leaderboard(game_score_list.leaderboard_string())
 
 #sprite groups for the different classes of images
 missile_group, explosion_group, score_group, target_group, player_group = create_sprite_groups(5)
@@ -84,8 +91,10 @@ while game_run:
             game_state = MAIN_MENU
 
     elif game_state == LEADER_BOARD:
-        print("game state:", game_state)
-        game_state = None
+        # display the leaderboard and check for button clicks
+        display.blit(leaderboard.image, leaderboard.rect)
+        leaderboard.draw()
+        game_state = leaderboard.check_button_click()
 
     elif game_state == EXIT_GAME:
         game_run = False
