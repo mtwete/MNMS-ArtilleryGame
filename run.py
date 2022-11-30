@@ -10,6 +10,7 @@ from score import Score
 from score_file_reader import ScoreFileReader
 from leaderboard import Leaderboard
 
+
 #initialize pygame, display, clock, leaderboard, gamescorelist, and target sprites
 pygame.init()
 pygame.event.set_blocked([pygame.MOUSEMOTION, pygame.ACTIVEEVENT, pygame.WINDOWLEAVE, pygame.WINDOWENTER])
