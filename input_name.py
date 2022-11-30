@@ -1,5 +1,3 @@
-import pygame
-
 from background import Background
 from constants import *
 from button import Button
@@ -26,20 +24,18 @@ class InputName(pygame.sprite.Sprite):
         self.reenter_textpos = self.reenter_text.get_rect(centerx=self.rect.width / 2,
                                                                   centery=self.rect.height / 1.5)
 
+        #Manager for the TextInputVisualizer, it will stop inputs from being less than 0 and greater than 15
         self.manager = TextInputManager(validator = lambda input: len(input) <= self.max_len and len(input) > 0)
 
         #Generate instruction_text input box
-        blue_rgb = (0,0,204)
+        green_rgb = (0,145,0)
         white_rgb = (255,255,255)
         self.input_text_font = pygame.font.SysFont("arial", 24)
-        #self.text_input_manager = TextInputManager()
-        #self.text_input_box = TextInputVisualizer(manager=self.input_text_font, font_object=self.input_text_font, font_color=blue_rgb,cursor_color=white_rgb)
         self.text_input_box = TextInputVisualizer(manager= self.manager, font_object=self.input_text_font,
-                                                  font_color=blue_rgb, cursor_color=white_rgb)
+                                                  font_color=green_rgb, cursor_color=white_rgb)
+
         # Single character width, used to calculated background box size behind the text input and other locations
         self.single_char_width, self.single_char_height = self.input_text_font.size("a")
-        #self.input_text_box = pygame.Rect((self.text_input_box.surface.get_rect().left,self.text_input_box.surface.get_rect().top),
-        #                                  (self.single_char_width*15,self.single_char_height))
         #make the surface height the same as the font and the width the same as the max name length (the just +2 makes the graphics look cleaner)
         self.input_text_box = pygame.Surface((self.single_char_width * 15 + 2, self.single_char_height))
         self.input_text_box.fill(white_rgb)
@@ -48,22 +44,24 @@ class InputName(pygame.sprite.Sprite):
 
         #Copy the original input name screen
         self.image_original = self.image.copy()
+        #Set up a current image, will switch to an image with the re-enter text if an invalid input is received
+        self.current_image = self.image_original
 
         #Set up the enter button
         self.enter_button = Button(ENTER, center_x=self.rect.width / 2, center_y=self.rect.height / 2 + 160)
         self.button_group = pygame.sprite.Group()
         self.button_group.add(self.enter_button)
 
-    #Method to draw the leaderboard screen
+    #Method to draw the input name screen
     def draw(self):
-        self.image.blit(self.image_original, self.rect)
+        self.image.blit(self.current_image, self.rect)
         input_box_surface, input_box_loc = self.input_box_surface_and_loc()
         self.image.blit(input_box_surface,input_box_loc)
         self.button_group.update()
         self.button_group.draw(self.image)
 
 
-    #Method to get the text_input_box surface
+    #Method to get the text_input_box surface and proper location
     def input_box_surface_and_loc(self):
         return self.text_input_box.surface, (self.rect.width / 2 - self.single_char_width*(self.max_len/2), self.rect.height / 2)
 
@@ -78,18 +76,26 @@ class InputName(pygame.sprite.Sprite):
         if self.enter_button.check_click() != None:
             name = self.text_input_box.value
             name_len = len(name)
-            #Check if the name length is in the right range
+            #Check if the name length is not in the right range
             if name_len == 0 or name_len > 15:
-                # If the user tried to enter but the text was too short or long, blit the re-enter instructions
-                # on the screen until the user enters an appropriate name
+                #If the user tried to enter but the text was too short or long, blit the re-enter instructions
+                #on the screen until the user enters an appropriate name
                 self.image.blit(self.reenter_text, self.reenter_textpos)
-                self.image_original = self.image.copy()
-            #If is an ok length, return none to break the loop in run
+                self.reenter_image = self.image.copy()
+                self.current_image = self.reenter_image
+            #If it is an ok length, return LEADER_BOARD to go to that screen
             else:
-                #Need to clear the input otherwise it will still be there next time the screen shows up
-                self.text_input_box.value = ""
                 return LEADER_BOARD
+        #Otherwise return GET_NAME until a proper input is received
         return GET_NAME
+
+    #Reset method to clear the text in the input box and reset the background to the original image
+    def reset(self):
+        #Need to clear the input otherwise it will still be there next time the screen shows up
+        self.text_input_box.value = ""
+        #Reset the current image in case the reenter text was displayed
+        self.current_image = self.image_original
+        self.draw()
 
 
 
