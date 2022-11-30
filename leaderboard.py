@@ -24,7 +24,7 @@ class Leaderboard(pygame.sprite.Sprite):
         self.score_line_writer = LeaderboardLineWriter(self.leaderboard_scores, self.rect.width,self.rect.height,self.text.get_rect().height)
         self.image.blit(self.score_line_writer.image, self.score_line_writer.rect)
 
-        #Copy the original menu
+        #Copy the original leaderboard
         self.image_original = self.image.copy()
 
         #Set up return to menu and exit game buttons
