@@ -1,3 +1,6 @@
+Bob	1027
+Jen	1019
+Tim	1007
 Andre	880
 Rene	878
 Adam	783
@@ -5,6 +8,3 @@ Mina	680
 Natasha	573
 Sam	499
 Nick	461
-Surya	259
-Matt	182
-Rebecca	151
