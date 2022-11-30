@@ -51,9 +51,20 @@ class InputName(pygame.sprite.Sprite):
     #Method to draw the leaderboard screen
     def draw(self):
         self.image.blit(self.image_original, self.rect)
+        input_box_surface, input_box_loc = self.input_box_surface_and_loc()
+        self.image.blit(input_box_surface,input_box_loc)
         self.button_group.update()
         self.button_group.draw(self.image)
 
+
+    #Method to get the text_input_box surface
+    def input_box_surface_and_loc(self):
+        return self.text_input_box.surface, (self.rect.width / 2 - self.single_char_width*(self.max_len/2), self.rect.height / 2)
+
+    #Wrapper for the update method of text_input_box
+    #events = pygame events
+    def input_box_update(self, events):
+        self.text_input_box.update(events)
 
     #Method to check for button clicks
     def check_button_click(self):
