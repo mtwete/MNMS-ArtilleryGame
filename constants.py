@@ -5,7 +5,7 @@ import random
 import math
 
 DISPLAY_SIZE = (800, 600)
-TIMER_SECONDS = 100
+TIMER_SECONDS = 45
 
 #Sound Mixer
 
