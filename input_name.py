@@ -37,10 +37,10 @@ class InputName(pygame.sprite.Sprite):
         # Single character width, used to calculated background box size behind the text input and other locations
         self.single_char_width, self.single_char_height = self.input_text_font.size("a")
         #make the surface height the same as the font and the width the same as the max name length (the just +2 makes the graphics look cleaner)
-        self.input_text_box = pygame.Surface((self.single_char_width * 15 + 2, self.single_char_height))
-        self.input_text_box.fill(white_rgb)
+        self.input_text_background = pygame.Surface((self.single_char_width * 15 + 2, self.single_char_height))
+        self.input_text_background.fill(white_rgb)
         #put input box in the center of the screen but offset to the left by half the max length of characters
-        self.image.blit(self.input_text_box, (self.rect.width / 2 - self.single_char_width*(self.max_len/2), self.rect.height / 2))
+        self.image.blit(self.input_text_background, (self.rect.width / 2 - self.single_char_width * (self.max_len / 2), self.rect.height / 2))
 
         #Copy the original input name screen
         self.image_original = self.image.copy()
