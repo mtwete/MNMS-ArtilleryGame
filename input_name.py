@@ -1,3 +1,5 @@
+import pygame
+
 from background import Background
 from constants import *
 from button import Button
@@ -30,15 +32,19 @@ class InputName(pygame.sprite.Sprite):
         blue_rgb = (0,0,204)
         white_rgb = (255,255,255)
         self.input_text_font = pygame.font.SysFont("arial", 24)
-        #Single character width, used to calculated background box
-        self.single_char_width, self.single_char_height = self.input_text_font.size("a")
-
-
         #self.text_input_manager = TextInputManager()
         #self.text_input_box = TextInputVisualizer(manager=self.input_text_font, font_object=self.input_text_font, font_color=blue_rgb,cursor_color=white_rgb)
         self.text_input_box = TextInputVisualizer(manager= self.manager, font_object=self.input_text_font,
                                                   font_color=blue_rgb, cursor_color=white_rgb)
-
+        # Single character width, used to calculated background box size behind the text input and other locations
+        self.single_char_width, self.single_char_height = self.input_text_font.size("a")
+        #self.input_text_box = pygame.Rect((self.text_input_box.surface.get_rect().left,self.text_input_box.surface.get_rect().top),
+        #                                  (self.single_char_width*15,self.single_char_height))
+        #make the surface height the same as the font and the width the same as the max name length (the just +2 makes the graphics look cleaner)
+        self.input_text_box = pygame.Surface((self.single_char_width * 15 + 2, self.single_char_height))
+        self.input_text_box.fill(white_rgb)
+        #put input box in the center of the screen but offset to the left by half the max length of characters
+        self.image.blit(self.input_text_box, (self.rect.width / 2 - self.single_char_width*(self.max_len/2), self.rect.height / 2))
 
         #Copy the original input name screen
         self.image_original = self.image.copy()
