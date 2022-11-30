@@ -48,7 +48,31 @@ class InputName(pygame.sprite.Sprite):
         self.button_group = pygame.sprite.Group()
         self.button_group.add(self.enter_button)
 
+    #Method to draw the leaderboard screen
+    def draw(self):
+        self.image.blit(self.image_original, self.rect)
+        self.button_group.update()
+        self.button_group.draw(self.image)
 
+
+    #Method to check for button clicks
+    def check_button_click(self):
+        #Check for enter button click
+        if self.enter_button.check_click() != None:
+            name = self.text_input_box.value
+            name_len = len(name)
+            #Check if the name length is in the right range
+            if name_len == 0 or name_len > 15:
+                # If the user tried to enter but the text was too short or long, blit the re-enter instructions
+                # on the screen until the user enters an appropriate name
+                self.image.blit(self.reenter_text, self.reenter_textpos)
+                self.image_original = self.image.copy()
+            #If is an ok length, return none to break the loop in run
+            else:
+                #Need to clear the input otherwise it will still be there next time the screen shows up
+                self.text_input_box.value = ""
+                return LEADER_BOARD
+        return GET_NAME
 
 
 
