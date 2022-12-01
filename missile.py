@@ -1,14 +1,15 @@
 import pygame
 import math
-from constants import *
+from utils import *
+from player import Player
 
 class Missile(pygame.sprite.Sprite):
-    def __init__(self, x, y, player):
+    def __init__(self, player: Player):
         super().__init__()
 
         #where the bullet starts, turret area of tank image
-        self.x = x + (player.width / 2)
-        self.y = y + (player.height / 2)
+        self.x = player.rect.x + (player.rect.width / 2)
+        self.y = player.rect.y + (player.rect.height / 2)
 
         self.image = pygame.Surface((4, 4), pygame.SRCALPHA)
         self.rect = self.image.get_rect(center=(self.x, self.y))
@@ -32,15 +33,9 @@ class Missile(pygame.sprite.Sprite):
             self.direction_y = player.rect.y
 
         #math that makes the bullet move
-        self.angle = math.atan2(y-self.direction_y, x-self.direction_x)
+        self.angle = math.atan2(player.rect.y-self.direction_y, player.rect.x-self.direction_x)
         self.x_vel = math.cos(self.angle) * self.speed
         self.y_vel = math.sin(self.angle) * self.speed
-        
-    # display on screen
-    def display(self, display, player):
-        self.x -= int(self.x_vel)
-        self.y -= int(self.y_vel)
-        pygame.draw.circle(display, (255, 255, 255), (self.x, self.y), 2)
 
     #update bullet image while in motion
     def update(self):

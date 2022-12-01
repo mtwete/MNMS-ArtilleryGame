@@ -1,5 +1,5 @@
 from background import Background
-from constants import *
+from utils import *
 from leaderboard_line_writer import LeaderboardLineWriter
 from button import Button
 

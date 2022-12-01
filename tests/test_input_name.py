@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 import pygame
-from constants import GET_NAME, ENTER, LEADER_BOARD
+from utils import GET_NAME, ENTER, LEADER_BOARD
 from input_name import InputName
 
 class TestInputName(unittest.TestCase):

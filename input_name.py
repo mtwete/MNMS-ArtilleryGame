@@ -1,5 +1,5 @@
 from background import Background
-from constants import *
+from utils import *
 from button import Button
 from pygame_textinput import TextInputVisualizer, TextInputManager
 

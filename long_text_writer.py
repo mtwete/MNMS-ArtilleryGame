@@ -1,4 +1,4 @@
-from constants import *
+from utils import *
 
 class LongTextWriter(pygame.sprite.Sprite):
 

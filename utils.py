@@ -5,22 +5,19 @@ import random
 import math
 
 DISPLAY_SIZE = (800, 600)
-TIMER_SECONDS = 45
+PLAYER_SIZE = (75, 75)
+TIMER_SECONDS = 60
 
 #Sound Mixer
+pygame.mixer.init()
 
 #music
-MUSIC_VOLUME_PERCENTAGE = .03
+MUSIC_VOLUME_PERCENTAGE = .02
 MUSIC_FILE_PATH = 'resources/Disco_Heavy.mp3'
-#background music
-pygame.mixer.init()
-pygame.mixer.music.load(MUSIC_FILE_PATH)
-pygame.mixer.music.set_volume(MUSIC_VOLUME_PERCENTAGE)
-pygame.mixer.music.play(-1) # -1 to repeat song endlessly
+
 #SFX
 EXPLOSION_SFX = pygame.mixer.Sound(os.path.join("resources/explosion.ogg"))
 EXPLOSION_SFX.set_volume(0.025) #15 percent volume
-
 
 
 MAIN_DIR = os.path.dirname(__file__)
@@ -48,6 +45,7 @@ RED_VIOLET = (202, 22, 142)
 CLAIRVOYANT = (100, 14, 110)
 
 START_GAME = "Start Game"
+PLAY_GAME = "Play Game"
 LEADER_BOARD = "Leader Board"
 GET_NAME = "Get Name"
 EXIT_GAME = "Exit Game"
@@ -57,8 +55,9 @@ ENTER = "Enter"
 def create_sprite_groups(number_of_groups: int = 1):
     if number_of_groups == 1:
         return pygame.sprite.Group()
+    return [pygame.sprite.Group() for group in range(number_of_groups)]
 
-    groups = []
-    for it in range(number_of_groups):
-        groups.append(pygame.sprite.Group())
-    return groups
+def start_background_music():
+    pygame.mixer.music.load(MUSIC_FILE_PATH)
+    pygame.mixer.music.set_volume(MUSIC_VOLUME_PERCENTAGE)
+    pygame.mixer.music.play(-1) # -1 to repeat song endlessly

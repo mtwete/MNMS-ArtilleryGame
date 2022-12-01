@@ -1,4 +1,4 @@
-from constants import *
+from utils import *
 from game_score import GameScore
 from game_score_writer import ScoreFileWriter
 from input_name import InputName
@@ -9,7 +9,7 @@ from background import Background
 from menu import Menu
 from timer import Timer
 from explosion import Explosion
-from score import Score
+from score_popup import ScorePopup
 from score_file_reader import ScoreFileReader
 from leaderboard import Leaderboard
 
@@ -29,13 +29,7 @@ leaderboard = Leaderboard(game_score_list.leaderboard_string())
 input_name = InputName()
 
 #sprite groups for the different classes of images
-missile_group, explosion_group, score_group, target_group, player_group = create_sprite_groups(5)
-
-
-player = Player(400, 300, 75, 75)
-target_group.add(Target())
-
-player_group.add(player)
+missile_group, explosion_group, score_popup_group, target_group, player_group = create_sprite_groups(5)
 
 #set up background object and skip menu background
 game_background = Background(BACKGROUND_IMAGES_FILE_PATHS)
@@ -43,22 +37,28 @@ game_background.increment_level_background()
 
 game_state = None
 game_run = True
+start_background_music()
 while game_run:
     if game_state == START_GAME:
-        if not timer.is_running():
+        for group in [missile_group, explosion_group, score_popup_group, target_group, player_group]:
+            group.empty()
+
+        player = Player()
+        player_group.add(player)
+        target_group.add(Target())
+
+        if timer.is_not_running():
             timer.start_timer()
 
+        game_state = PLAY_GAME
+
+    elif game_state == PLAY_GAME:
         display.blit(game_background.image,game_background.loc)
 
-        #Display the current score of the player
-        player.display_score(display)
-
-        #updates player movement
-        player.update_player()
-
         #display tank, bullets and targets
-        player.display_score(display)
         target_group.draw(display)
+
+        player_group.update(display)
         player_group.draw(display)
         
         #update and display all missiles
@@ -68,15 +68,15 @@ while game_run:
         explosion_group.update()
         explosion_group.draw(display)
         pygame.sprite.groupcollide(explosion_group, missile_group, False, True)
-        score_group.update()
-        score_group.draw(display)
+        score_popup_group.update()
+        score_popup_group.draw(display)
 
         #check collision between target and missiles
         hits = pygame.sprite.groupcollide(target_group, missile_group, True, True)
         for target in hits:
-            explosion_group.add(Explosion(target.rect.centerx, target.rect.centery, target.rect.size))
+            explosion_group.add(Explosion(target))
             pygame.mixer.Sound.play(EXPLOSION_SFX)
-            score_group.add(Score(target.points, target.rect.width, target.rect.center, display.get_rect()))
+            score_popup_group.add(ScorePopup(target, display))
             player.update_score(target.points)
             target_group.add(Target())
         #checks for player tank / target collision. removes target with no explosion and no points given
@@ -85,7 +85,7 @@ while game_run:
             
         #countdown timer update
         timer.update_timer(display)
-        if not timer.is_running():
+        if timer.is_not_running():
             game_state = GET_NAME
 
     elif game_state == GET_NAME:
@@ -122,9 +122,9 @@ while game_run:
             game_run = False
             
         #bullet fires with spacebar
-        if event.type == pygame.KEYDOWN and game_state == START_GAME:
+        if event.type == pygame.KEYDOWN and game_state == PLAY_GAME:
             if event.key == pygame.K_SPACE:
-                missile_group.add(Missile(player.rect.x, player.rect.y, player))
+                missile_group.add(Missile(player))
 
     clock.tick(60)
     pygame.display.update()
