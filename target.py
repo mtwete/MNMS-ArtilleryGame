@@ -30,7 +30,7 @@ class Target(pygame.sprite.Sprite):
         self.points = target_attr.points
         self.rect = self.image.get_rect()
         #location
-        self.rect.x = random.randint(50, DISPLAY_SIZE[0] - (target_attr.width +50)) #-20 for edge buffer
-        self.rect.y = random.randint(50, DISPLAY_SIZE[1] - (target_attr.height +50)) #-20 for edge buffer
+        self.rect.x = random.randint(50, DISPLAY_SIZE[0] - (target_attr.width +50)) #-50 for edge buffer
+        self.rect.y = random.randint(50, DISPLAY_SIZE[1] - (target_attr.height +50)) #-50 for edge buffer
 
 

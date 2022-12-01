@@ -31,12 +31,6 @@ input_name = InputName()
 #sprite groups for the different classes of images
 missile_group, explosion_group, score_group, target_group, player_group = create_sprite_groups(5)
 
-#background music
-pygame.mixer.init()
-pygame.mixer.music.load(MUSIC_FILE_PATH)
-pygame.mixer.music.set_volume(MUSIC_VOLUME_PERCENTAGE)
-pygame.mixer.music.play(-1) # -1 to repeat song endlessly
-
 
 player = Player(400, 300, 75, 75)
 target_group.add(Target())
@@ -81,12 +75,12 @@ while game_run:
         hits = pygame.sprite.groupcollide(target_group, missile_group, True, True)
         for target in hits:
             explosion_group.add(Explosion(target.rect.centerx, target.rect.centery, target.rect.size))
+            pygame.mixer.Sound.play(EXPLOSION_SFX)
             score_group.add(Score(target.points, target.rect.width, target.rect.center, display.get_rect()))
             player.update_score(target.points)
             target_group.add(Target())
         #checks for player tank / target collision. removes target with no explosion and no points given
-        hits = pygame.sprite.groupcollide(target_group, player_group, True, False)
-        for target in hits:
+        if (pygame.sprite.groupcollide(target_group, player_group, True, False)):
             target_group.add(Target())
             
         #countdown timer update
