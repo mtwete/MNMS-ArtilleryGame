@@ -18,7 +18,7 @@ class Menu(pygame.sprite.Sprite):
         #add game description to menu screen
         self.description = '''
         Game Objective:  Race against the clock and clear as many targets as you can.
-        Using the wasd keys and spacebar, aim at the target and shoot missiles to 
+        Using the arrow keys and spacebar, aim at the target and shoot missiles to 
         blast away the enemy.  Hurry, time is running out!
         '''
         text_writer = LongTextWriter(self.description)

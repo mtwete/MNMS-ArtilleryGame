@@ -23,19 +23,19 @@ class Player(pygame.sprite.Sprite):
         #tank movement
         #also updates the tank image to be facing in the direction of movement
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_a]:
+        if keys[pygame.K_LEFT]:
             self.rect.x -= 2
             self.image = pygame.transform.scale(pygame.image.load(TANK_LEFT), PLAYER_SIZE)
             self.direction = TANK_LEFT
-        elif keys[pygame.K_d]:
+        elif keys[pygame.K_RIGHT]:
             self.rect.x += 2
             self.image = pygame.transform.scale(pygame.image.load(TANK_RIGHT), PLAYER_SIZE)
             self.direction = TANK_RIGHT
-        elif keys[pygame.K_w]:
+        elif keys[pygame.K_UP]:
             self.rect.y-= 2
             self.image = pygame.transform.scale(pygame.image.load(TANK_UP), PLAYER_SIZE)
             self.direction = TANK_UP
-        elif keys[pygame.K_s]:
+        elif keys[pygame.K_DOWN]:
             self.rect.y+= 2
             self.image = pygame.transform.scale(pygame.image.load(TANK_DOWN), PLAYER_SIZE)
             self.direction = TANK_DOWN
