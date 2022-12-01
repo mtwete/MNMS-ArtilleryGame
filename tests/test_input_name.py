@@ -6,7 +6,7 @@ from input_name import InputName
 
 class TestInputName(unittest.TestCase):
     def setUp(self) -> None:
-        self.instruction_string = "Please input your name(must be between 1 and 15 characters) below:"
+        self.instruction_string = "Please input your name(must be between 1-15 characters and have no spaces) below:"
         self.reenter_string = "Your name must be at least 1 character, please try again"
         self.max_len = 15
         pygame.display.set_mode((800, 600))

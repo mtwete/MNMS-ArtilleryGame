@@ -96,7 +96,7 @@ while game_run:
 
         game_state = input_name.check_button_click()
         if game_state == LEADER_BOARD:
-            game_score = GameScore(player.score+1020, input_name.text_input_box.value)
+            game_score = GameScore(player.score, input_name.text_input_box.value)
             game_score_list.add_score(game_score)
             input_name.reset()
             # Need to create a new leaderboard in case the current score is in the top 10
