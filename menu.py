@@ -1,4 +1,4 @@
-from constants import *
+from utils import *
 from background import Background
 from long_text_writer import LongTextWriter
 from button import Button

@@ -1,12 +1,14 @@
 import unittest
 from itertools import product
 from unittest.mock import MagicMock
+from target import Target
 from explosion import Explosion
 
 class TestButton(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.explosion = Explosion(0, 0)
+        self.target = Target()
+        self.explosion = Explosion(self.target)
 
     def test_constructor(self):
         self.assertEqual(self.explosion.index, 0)

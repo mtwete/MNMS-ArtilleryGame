@@ -27,36 +27,3 @@ class TestTarget(unittest.TestCase):
         self.assertEqual(target.rect.width, target_attr_tuple.width)
         self.assertEqual(target.rect.height, target_attr_tuple.height)
         self.assertEqual(target.points, target_attr_tuple.points)
-
-    def test_collision_return_points(self):
-        target = Target()
-        bullet = MagicMock()
-        bullet.x = target.rect.x
-        bullet.y = target.rect.y
-        self.assertIsNotNone(target.update(bullet))
-        self.assertGreater(target.update(bullet), 0)
-    
-    def test_non_collision_return_nothing(self):
-        target = Target()
-        bullet = MagicMock()
-        bullet.x = target.rect.x - 1
-        bullet.y = target.rect.y - 1
-        self.assertIsNone(target.update(bullet))
-
-    def test_collision_call_self_kill(self):
-        target = Target()
-        target.kill = MagicMock()
-        bullet = MagicMock()
-        bullet.x = target.rect.x
-        bullet.y = target.rect.y
-        target.update(bullet)
-        target.kill.assert_called_with()
-
-    def test_non_collision_means_no_kill(self):
-        target = Target()
-        target.kill = MagicMock()
-        bullet = MagicMock()
-        bullet.x = target.rect.x - 1
-        bullet.y = target.rect.y - 1
-        target.update(bullet)
-        target.kill.assert_not_called()
