@@ -1,4 +1,4 @@
-from constants import *
+from utils import *
 
 class Timer():
 
@@ -14,8 +14,8 @@ class Timer():
             self.start_ticks =  pygame.time.get_ticks() 
             self.running = True
 
-    def is_running(self):
-        return self.running
+    def is_not_running(self):
+        return not self.running
 
     def update_timer(self, display):
         total_ticks = pygame.time.get_ticks()
