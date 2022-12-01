@@ -49,7 +49,8 @@ while game_run:
             timer.start_timer()
 
         display.blit(game_background.image,game_background.loc)
-
+        #Reset the player score in case this is a second round of gameplay
+        player.score = 0
         #Display the current score of the player
         player.display_score(display)
 

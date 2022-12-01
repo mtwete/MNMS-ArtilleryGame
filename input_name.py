@@ -9,14 +9,14 @@ class InputName(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         #Instruction and re-enter name strings
-        self.instruction_string = "Please input your name(must be between 1 and 15 characters) below:"
+        self.instruction_string = "Please input your name(must be between 1-15 characters and have no spaces) below:"
         self.reenter_string = "Your name must be at least 1 character, please try again"
         self.max_len = 15
         #Set up background
         self.image = Background(BACKGROUND_IMAGES_FILE_PATHS).image.convert()
         self.rect = self.image.get_rect()
         #Display the instructions for inputting a name
-        self.instruction_text = pygame.font.SysFont("arialblack", 20).render(self.instruction_string, True, 'white')
+        self.instruction_text = pygame.font.SysFont("arialblack", 16).render(self.instruction_string, True, 'white')
         self.instruction_textpos = self.instruction_text.get_rect(centerx=self.rect.width / 2, centery=self.rect.height / 3)
         self.image.blit(self.instruction_text, self.instruction_textpos)
         #Set up re-enter string text objects
@@ -30,9 +30,10 @@ class InputName(pygame.sprite.Sprite):
         #Generate instruction_text input box
         green_rgb = (0,145,0)
         white_rgb = (255,255,255)
+        black_rgb = (0,0,0)
         self.input_text_font = pygame.font.SysFont("arial", 24)
         self.text_input_box = TextInputVisualizer(manager= self.manager, font_object=self.input_text_font,
-                                                  font_color=green_rgb, cursor_color=white_rgb)
+                                                  font_color=green_rgb, cursor_color=black_rgb)
 
         # Single character width, used to calculated background box size behind the text input and other locations
         self.single_char_width, self.single_char_height = self.input_text_font.size("a")
