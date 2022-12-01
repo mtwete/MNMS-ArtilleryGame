@@ -18,7 +18,7 @@ class Player(pygame.sprite.Sprite):
         #scorekeep
         self.score = 0
 
-    def update_player(self):
+    def update(self, display):
 
         #tank movement
         #also updates the tank image to be facing in the direction of movement
@@ -50,6 +50,8 @@ class Player(pygame.sprite.Sprite):
             self.rect.y = 0
         if self.rect.y >= DISPLAY_SIZE[1] - self.rect.height:
             self.rect.y = DISPLAY_SIZE[1] - self.rect.height 
+
+        self.display_score(display)
 
     def update_score(self, add_point=1):
         self.score += add_point

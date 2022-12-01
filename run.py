@@ -40,6 +40,12 @@ game_run = True
 start_background_music()
 while game_run:
     if game_state == START_GAME:
+        player_group.empty()
+        target_group.empty()
+        missile_group.empty()
+        explosion_group.empty()
+        score_popup_group.empty()
+
         if len(player_group) == 0:
             player = Player()
             player_group.add(player)
@@ -48,17 +54,15 @@ while game_run:
         if not timer.is_running():
             timer.start_timer()
 
+        game_state = PLAY_GAME
+
+    elif game_state == PLAY_GAME:
         display.blit(game_background.image,game_background.loc)
 
-        #Display the current score of the player
-        player.display_score(display)
-
-        #updates player movement
-        player.update_player()
-
         #display tank, bullets and targets
-        player.display_score(display)
         target_group.draw(display)
+
+        player_group.update(display)
         player_group.draw(display)
         
         #update and display all missiles
@@ -94,12 +98,6 @@ while game_run:
         events = pygame.event.get()
         input_name.input_box_update(events)
 
-        player_group.empty()
-        target_group.empty()
-        missile_group.empty()
-        explosion_group.empty()
-        score_popup_group.empty()
-
         game_state = input_name.check_button_click()
         if game_state == LEADER_BOARD:
             game_score = GameScore(player.score+1020, input_name.text_input_box.value)
@@ -128,7 +126,7 @@ while game_run:
             game_run = False
             
         #bullet fires with spacebar
-        if event.type == pygame.KEYDOWN and game_state == START_GAME:
+        if event.type == pygame.KEYDOWN and game_state == PLAY_GAME:
             if event.key == pygame.K_SPACE:
                 missile_group.add(Missile(player))
 
