@@ -29,13 +29,7 @@ leaderboard = Leaderboard(game_score_list.leaderboard_string())
 input_name = InputName()
 
 #sprite groups for the different classes of images
-missile_group, explosion_group, score_group, target_group, player_group = create_sprite_groups(5)
-
-
-player = Player(400, 300, 75, 75)
-target_group.add(Target())
-
-player_group.add(player)
+missile_group, explosion_group, score_popup_group, target_group, player_group = create_sprite_groups(5)
 
 #set up background object and skip menu background
 game_background = Background(BACKGROUND_IMAGES_FILE_PATHS)
@@ -46,6 +40,11 @@ game_run = True
 start_background_music()
 while game_run:
     if game_state == START_GAME:
+        if len(player_group) == 0:
+            player = Player(400, 300, 75, 75)
+            player_group.add(player)
+            target_group.add(Target())
+
         if not timer.is_running():
             timer.start_timer()
 
@@ -69,15 +68,15 @@ while game_run:
         explosion_group.update()
         explosion_group.draw(display)
         pygame.sprite.groupcollide(explosion_group, missile_group, False, True)
-        score_group.update()
-        score_group.draw(display)
+        score_popup_group.update()
+        score_popup_group.draw(display)
 
         #check collision between target and missiles
         hits = pygame.sprite.groupcollide(target_group, missile_group, True, True)
         for target in hits:
             explosion_group.add(Explosion(target.rect.centerx, target.rect.centery, target.rect.size))
             pygame.mixer.Sound.play(EXPLOSION_SFX)
-            score_group.add(Score(target.points, target.rect.width, target.rect.center, display.get_rect()))
+            score_popup_group.add(Score(target.points, target.rect.width, target.rect.center, display.get_rect()))
             player.update_score(target.points)
             target_group.add(Target())
         #checks for player tank / target collision. removes target with no explosion and no points given
@@ -94,6 +93,12 @@ while game_run:
         input_name.draw()
         events = pygame.event.get()
         input_name.input_box_update(events)
+
+        player_group.empty()
+        target_group.empty()
+        missile_group.empty()
+        explosion_group.empty()
+        score_popup_group.empty()
 
         game_state = input_name.check_button_click()
         if game_state == LEADER_BOARD:

@@ -53,11 +53,7 @@ ENTER = "Enter"
 def create_sprite_groups(number_of_groups: int = 1):
     if number_of_groups == 1:
         return pygame.sprite.Group()
-
-    groups = []
-    for it in range(number_of_groups):
-        groups.append(pygame.sprite.Group())
-    return groups
+    return [pygame.sprite.Group() for group in range(number_of_groups)]
 
 def start_background_music():
     pygame.mixer.music.load(MUSIC_FILE_PATH)
