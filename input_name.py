@@ -25,7 +25,7 @@ class InputName(pygame.sprite.Sprite):
                                                                   centery=self.rect.height / 1.5)
 
         #Manager for the TextInputVisualizer, it will stop inputs from being less than 0 and greater than 15
-        self.manager = TextInputManager(validator = lambda input: len(input) <= self.max_len and len(input) > 0)
+        self.manager = TextInputManager(validator = lambda input: len(input) <= self.max_len and len(input) > 0 and ' ' not in input)
 
         #Generate instruction_text input box
         green_rgb = (0,145,0)
