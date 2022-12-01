@@ -41,7 +41,7 @@ start_background_music()
 while game_run:
     if game_state == START_GAME:
         if len(player_group) == 0:
-            player = Player(400, 300, 75, 75)
+            player = Player()
             player_group.add(player)
             target_group.add(Target())
 
@@ -130,7 +130,7 @@ while game_run:
         #bullet fires with spacebar
         if event.type == pygame.KEYDOWN and game_state == START_GAME:
             if event.key == pygame.K_SPACE:
-                missile_group.add(Missile(player.rect.x, player.rect.y, player))
+                missile_group.add(Missile(player))
 
     clock.tick(60)
     pygame.display.update()

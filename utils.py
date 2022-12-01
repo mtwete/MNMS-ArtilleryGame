@@ -5,7 +5,8 @@ import random
 import math
 
 DISPLAY_SIZE = (800, 600)
-TIMER_SECONDS = 45
+PLAYER_SIZE = (75, 75)
+TIMER_SECONDS = 10
 
 #Sound Mixer
 pygame.mixer.init()
@@ -44,6 +45,7 @@ RED_VIOLET = (202, 22, 142)
 CLAIRVOYANT = (100, 14, 110)
 
 START_GAME = "Start Game"
+PLAY_GAME = "Play Game"
 LEADER_BOARD = "Leader Board"
 GET_NAME = "Get Name"
 EXIT_GAME = "Exit Game"

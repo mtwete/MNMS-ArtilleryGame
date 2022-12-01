@@ -2,23 +2,18 @@ from utils import *
 
 #player tank
 class Player(pygame.sprite.Sprite):
-    def __init__(self, x, y, width, height):
+    def __init__(self):
         super().__init__()
 
         # image = pygame.image.load(TANK_UP)
-        self.image = pygame.transform.scale(pygame.image.load(TANK_UP), (width, height))
+        self.image = pygame.transform.scale(pygame.image.load(TANK_UP), PLAYER_SIZE)
         self.direction = TANK_UP
-
-        #size
-        self.width = width
-        self.height = height
 
         #display
         self.rect = self.image.get_rect()
 
         #update image location
-        self.rect.x = x
-        self.rect.y = y
+        self.rect.center = (DISPLAY_SIZE[0]//2, DISPLAY_SIZE[1]//2)
         
         #scorekeep
         self.score = 0
@@ -30,19 +25,19 @@ class Player(pygame.sprite.Sprite):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
             self.rect.x -= 2
-            self.image = pygame.transform.scale(pygame.image.load(TANK_LEFT), (self.width, self.height))
+            self.image = pygame.transform.scale(pygame.image.load(TANK_LEFT), PLAYER_SIZE)
             self.direction = TANK_LEFT
         elif keys[pygame.K_d]:
             self.rect.x += 2
-            self.image = pygame.transform.scale(pygame.image.load(TANK_RIGHT), (self.width, self.height))
+            self.image = pygame.transform.scale(pygame.image.load(TANK_RIGHT), PLAYER_SIZE)
             self.direction = TANK_RIGHT
         elif keys[pygame.K_w]:
             self.rect.y-= 2
-            self.image = pygame.transform.scale(pygame.image.load(TANK_UP), (self.width, self.height))
+            self.image = pygame.transform.scale(pygame.image.load(TANK_UP), PLAYER_SIZE)
             self.direction = TANK_UP
         elif keys[pygame.K_s]:
             self.rect.y+= 2
-            self.image = pygame.transform.scale(pygame.image.load(TANK_DOWN), (self.width, self.height))
+            self.image = pygame.transform.scale(pygame.image.load(TANK_DOWN), PLAYER_SIZE)
             self.direction = TANK_DOWN
 
 
