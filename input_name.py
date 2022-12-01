@@ -24,7 +24,7 @@ class InputName(pygame.sprite.Sprite):
         self.reenter_textpos = self.reenter_text.get_rect(centerx=self.rect.width / 2,
                                                                   centery=self.rect.height / 1.5)
 
-        #Manager for the TextInputVisualizer, it will stop inputs from being less than 0 and greater than 15
+        #Manager for the TextInputVisualizer, it will stop inputs from being less than 0 and greater than 15 and any that have whitespace
         self.manager = TextInputManager(validator = lambda input: len(input) <= self.max_len and len(input) > 0 and ' ' not in input)
 
         #Generate instruction_text input box
