@@ -46,6 +46,7 @@ game_run = True
 while game_run:
     if game_state == START_GAME:
         if not timer.is_running():
+            player.score = 0
             timer.start_timer()
 
         display.blit(game_background.image,game_background.loc)
