@@ -6,7 +6,7 @@ import math
 
 DISPLAY_SIZE = (800, 600)
 PLAYER_SIZE = (75, 75)
-TIMER_SECONDS = 10
+TIMER_SECONDS = 60
 
 #Sound Mixer
 pygame.mixer.init()
