@@ -100,8 +100,6 @@ while game_run:
             input_name.reset()
             # Need to create a new leaderboard in case the current score is in the top 10
             leaderboard.update_scores(game_score_list.leaderboard_string())
-            # Reset the player score so it is back to 0 at the next round of play
-            player.score = 0
 
     elif game_state == LEADER_BOARD:
         # display the leaderboard and check for button clicks
