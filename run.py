@@ -1,4 +1,4 @@
-from constants import *
+from utils import *
 from game_score import GameScore
 from game_score_writer import ScoreFileWriter
 from input_name import InputName
@@ -43,6 +43,7 @@ game_background.increment_level_background()
 
 game_state = None
 game_run = True
+start_background_music()
 while game_run:
     if game_state == START_GAME:
         if not timer.is_running():

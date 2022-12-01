@@ -1,4 +1,4 @@
-from constants import *
+from utils import *
 
 #player tank
 class Player(pygame.sprite.Sprite):
@@ -49,24 +49,19 @@ class Player(pygame.sprite.Sprite):
         #stops player from going off screen
         if self.rect.x <= 0:
             self.rect.x = 0
-        if self.rect.x >= 766:
-            self.rect.x = 766
+        if self.rect.x >= DISPLAY_SIZE[0] - self.rect.width:
+            self.rect.x = DISPLAY_SIZE[0] - self.rect.width
         if self.rect.y <= 0:
             self.rect.y = 0
-        if self.rect.y >= 566:
-            self.rect.y = 566 
+        if self.rect.y >= DISPLAY_SIZE[1] - self.rect.height:
+            self.rect.y = DISPLAY_SIZE[1] - self.rect.height 
 
     def update_score(self, add_point=1):
         self.score += add_point
 
-    #function to display the current score of the player on the game screen
-    #parameters:
     #display: the pygame display object used by the game, it will have the score blit onto it
     def display_score(self, display):
-        #Create a font object to write the score with
         score_font = pygame.font.SysFont('cambria', 26)
-        #create a surface with the current score in red text that you can
-        #blit onto a different surface, the score will be red, hence (255,0,0), for visibility
         score_display = score_font.render("Score: " + str(self.score),1,(255,0,0))
         #Get the rectangle size of the text, so a background box of the right size can be drawn
         score_size = score_display.get_rect()
