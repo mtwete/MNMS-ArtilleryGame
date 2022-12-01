@@ -9,7 +9,7 @@ from background import Background
 from menu import Menu
 from timer import Timer
 from explosion import Explosion
-from score import Score
+from score_popup import ScorePopup
 from score_file_reader import ScoreFileReader
 from leaderboard import Leaderboard
 
@@ -40,18 +40,14 @@ game_run = True
 start_background_music()
 while game_run:
     if game_state == START_GAME:
-        player_group.empty()
-        target_group.empty()
-        missile_group.empty()
-        explosion_group.empty()
-        score_popup_group.empty()
+        for group in [missile_group, explosion_group, score_popup_group, target_group, player_group]:
+            group.empty()
 
-        if len(player_group) == 0:
-            player = Player()
-            player_group.add(player)
-            target_group.add(Target())
+        player = Player()
+        player_group.add(player)
+        target_group.add(Target())
 
-        if not timer.is_running():
+        if timer.is_not_running():
             timer.start_timer()
 
         game_state = PLAY_GAME
@@ -78,9 +74,9 @@ while game_run:
         #check collision between target and missiles
         hits = pygame.sprite.groupcollide(target_group, missile_group, True, True)
         for target in hits:
-            explosion_group.add(Explosion(target.rect.centerx, target.rect.centery, target.rect.size))
+            explosion_group.add(Explosion(target))
             pygame.mixer.Sound.play(EXPLOSION_SFX)
-            score_popup_group.add(Score(target.points, target.rect.width, target.rect.center, display.get_rect()))
+            score_popup_group.add(ScorePopup(target, display))
             player.update_score(target.points)
             target_group.add(Target())
         #checks for player tank / target collision. removes target with no explosion and no points given
@@ -89,7 +85,7 @@ while game_run:
             
         #countdown timer update
         timer.update_timer(display)
-        if not timer.is_running():
+        if timer.is_not_running():
             game_state = GET_NAME
 
     elif game_state == GET_NAME:

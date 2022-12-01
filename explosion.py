@@ -1,19 +1,20 @@
 from utils import *
+from target import Target
 
 class Explosion(pygame.sprite.Sprite):
 
-    def __init__(self, center_x, center_y, scale: tuple = (100, 100)) -> None:
+    def __init__(self, target: Target) -> None:
         super().__init__()
         self.images = []
         for num in range(5):
             img_path = os.path.join(IMAGES_DIR, f'explosions/explosion_{str(num)}.png')
             img = pygame.image.load(f"{img_path}")
-            img = pygame.transform.scale(img, (scale[0] + 30, scale[1] + 30))
+            img = pygame.transform.scale(img, (target.rect.size[0] + 30, target.rect.size[1] + 30))
             self.images.append(img)
         self.index = 0
         self.image = self.images[self.index]
         self.rect = self.image.get_rect()
-        self.rect.center = (center_x, center_y)
+        self.rect.center = target.rect.center
         self.explosion_speed = 6
         self.speed_counter = 0
 
