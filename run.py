@@ -49,8 +49,6 @@ while game_run:
             timer.start_timer()
 
         display.blit(game_background.image,game_background.loc)
-        #Reset the player score in case this is a second round of gameplay
-        player.score = 0
         #Display the current score of the player
         player.display_score(display)
 
@@ -97,11 +95,13 @@ while game_run:
 
         game_state = input_name.check_button_click()
         if game_state == LEADER_BOARD:
-            game_score = GameScore(player.score+1020, input_name.text_input_box.value)
+            game_score = GameScore(player.score, input_name.text_input_box.value)
             game_score_list.add_score(game_score)
             input_name.reset()
             # Need to create a new leaderboard in case the current score is in the top 10
             leaderboard.update_scores(game_score_list.leaderboard_string())
+            # Reset the player score so it is back to 0 at the next round of play
+            player.score = 0
 
     elif game_state == LEADER_BOARD:
         # display the leaderboard and check for button clicks
