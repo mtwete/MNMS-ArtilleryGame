@@ -1,3 +1,4 @@
-Mina 90
-Matt 85
-Nick 75
+Nick	155
+Mina	90
+Matt	85
+Nick	75
